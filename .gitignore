@@ -1,0 +1,12 @@
+.vscode
+__pycache__
+*.csv
+*.pth
+*.txt
+
+data/
+input/
+datasets/
+
+saved*
+a_old*
