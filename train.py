@@ -4,7 +4,7 @@ import pytorch.imp.metric as module_metric
 import pytorch.imp.model as module_arch
 from pytorch.imp.trainer import Trainer
 from pytorch.utils.config import ConfigParser
-from pytorch.utils.util import prepare_device
+from pytorch.utils.util import prepare_device, model_info
 
 import torch
 import numpy as np
@@ -21,10 +21,15 @@ def main(config: ConfigParser):
     valid_data_loader = train_dataloader.split_validation()
 
     model = config.init_obj('arch', module_arch)
-    logger.info(model)
+    logger.info(model_info(model))
 
     device, device_ids = prepare_device(config['n_gpu'])
+    
+    # if config['model_bf16'] == True:
+    #     model = model.to(device, torch.bfloat16)
+    # else:
     model = model.to(device)
+
     if len(device_ids) > 1:
         model = torch.nn.DataParallel(model, device_ids=device_ids)
 
@@ -42,7 +47,11 @@ def main(config: ConfigParser):
                       valid_data_loader=valid_data_loader,
                       lr_scheduler=lr_scheduler)
 
-    trainer.train()
+    if config['train_bf16'] == True:
+        with torch.autocast(device_type=device.type, dtype=torch.bfloat16):
+            trainer.train()
+    else:
+        trainer.train()
 
 if __name__ == '__main__':
     

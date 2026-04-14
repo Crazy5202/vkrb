@@ -90,6 +90,14 @@ def prepare_device(n_gpu_use):
     list_ids = list(range(n_gpu_use))
     return device, list_ids
 
+def model_info(model: torch.nn.Module):
+    """
+    Model prints with number of trainable parameters
+    """
+    model_parameters = filter(lambda p: p.requires_grad, model.parameters())
+    params = sum([np.prod(p.size()) for p in model_parameters])
+    return model.__str__() + '\nTrainable parameters: {}'.format(params)
+
 class MetricTracker:
     def __init__(self, *keys, writer=None):
         self.writer = writer

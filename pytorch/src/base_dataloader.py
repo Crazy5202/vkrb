@@ -9,7 +9,9 @@ class BaseDataLoader(DataLoader):
     """
     Base class for all data loaders
     """
-    def __init__(self, dataset, batch_size, shuffle, validation_split = 0.0, collate_fn=default_collate, num_workers = 0):
+    def __init__(self, dataset, batch_size, shuffle = True, validation_split = 0.0, 
+                collate_fn=default_collate, num_workers = 0, prefetch_factor=None, 
+                pin_memory=False, persistent_workers=False, drop_last=False):
         self.validation_split = validation_split
         self.shuffle = shuffle
 
@@ -23,7 +25,11 @@ class BaseDataLoader(DataLoader):
             'batch_size': batch_size,
             'shuffle': self.shuffle,
             'collate_fn': collate_fn,
-            'num_workers': num_workers
+            'num_workers': num_workers,
+            'pin_memory': pin_memory,
+            'prefetch_factor': prefetch_factor,
+            'persistent_workers': persistent_workers,
+            'drop_last': drop_last
         }
         super().__init__(sampler=self.sampler, **self.init_kwargs)
 

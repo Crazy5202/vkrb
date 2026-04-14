@@ -1,25 +1,73 @@
 import torch
-#from torchmetrics import F1Score
+from torchmetrics import Accuracy, F1Score
 
-def accuracy(output, target):
+def OA(device, output, target):
     with torch.no_grad():
-        pred = torch.argmax(output, dim=1)
-        assert pred.shape[0] == len(target)
-        correct = 0
-        correct += torch.sum(pred == target).item()
-    return correct / len(target)
+        metric = Accuracy(task='multiclass', num_classes = 4, average='micro')
+        metric.to(device=device)
 
-def f1_score(output, target):
+        pred = torch.argmax(output, dim=1)
+        label = torch.argmax(target, dim=1)
+        result = metric(pred, label)
+    return result
+
+def AA(device, output, target):
     with torch.no_grad():
-        pred = torch.argmax(output, dim=1)
-        TP = ((pred == 1) & (target == 1)).sum().item()
-        FP = ((pred == 1) & (target == 0)).sum().item()
-        FN = ((pred == 0) & (target == 1)).sum().item()
+        metric = Accuracy(task='multiclass', num_classes = 4, average='macro')
+        metric.to(device=device)
 
-        precision = TP / (TP + FP) if TP + FP > 0 else 0
-        recall = TP / (TP + FN) if TP + FN > 0 else 0
-        f1 = 2 * (precision * recall) / (precision + recall) if (precision + recall) > 0 else 0
-    return f1
+        pred = torch.argmax(output, dim=1)
+        label = torch.argmax(target, dim=1)
+        result = metric(pred, label)
+    return result
+
+def f1Ma(device, output, target):
+    with torch.no_grad():
+        metric = F1Score(task='multiclass', num_classes = 4, average='macro')
+        metric.to(device=device)
+
+        pred = torch.argmax(output, dim=1)
+        label = torch.argmax(target, dim=1)
+        result = metric(pred, label)
+    return result
+
+# def binary_accuracy(device, output, target):
+#     with torch.no_grad():
+#         pred = torch.argmax(output, dim=1)
+
+#         metric = Accuracy(task='binary')
+#         metric.to(device=device)
+#         result = metric(pred, target)
+#     return result
+
+# def binary_f1(device, output, target):
+#     with torch.no_grad():
+#         pred = torch.argmax(output, dim=1)
+
+#         metric = F1Score(task='binary')
+#         metric.to(device=device)
+#         result = metric(pred, target)
+#     return result
+
+# def accuracy(output, target):
+#     with torch.no_grad():
+#         pred = torch.argmax(output, dim=1)
+#         assert pred.shape[0] == len(target)
+#         correct = 0
+#         correct += torch.sum(pred == target).item()
+#     return correct / len(target)
+
+# def f1_score(output, target):
+#     with torch.no_grad():
+#         pred = torch.argmax(output, dim=1)
+#         TP = ((pred == 1) & (target == 1)).sum().item()
+#         FP = ((pred == 1) & (target == 0)).sum().item()
+#         FN = ((pred == 0) & (target == 1)).sum().item()
+
+#         precision = TP / (TP + FP) if TP + FP > 0 else 0
+#         recall = TP / (TP + FN) if TP + FN > 0 else 0
+#         f1 = 2 * (precision * recall) / (precision + recall) if (precision + recall) > 0 else 0
+#     return f1
 
 # def f1(output, target):
 #     f1_metric = F1Score(task='binary')

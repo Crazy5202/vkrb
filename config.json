@@ -1,34 +1,34 @@
 {
-    "name": "HybridSN_TT_fix",
+    "name": "SS_ConvNeXt_HSI",
     "n_gpu": 1,
+    "train_bf16": true,
 
     "arch": {
-        "type": "HybridSN_TT",
+        "type": "SS_ConvNeXt_HSI",
         "args": {
-            "num_classes": 2
         }
     },
     "optimizer": {
         "type": "Adam",
         "args":{
-            "lr": 0.01,
+            "lr": 0.001,
             "weight_decay": 1e-4,
             "amsgrad": true
         }
     },
     "loss": "cross_entropy_loss",
     "metrics": [
-        "accuracy", "f1_score"
+        "OA", "AA"
     ],
     "lr_scheduler": {
-        "type": "CosineAnnealingLR",
+        "type": "StepLR",
         "args": {
-            "T_max": 10,
-            "eta_min": 1e-6
+            "step_size": 5,
+            "gamma": 0.9
         }
     },
     "trainer": {
-        "epochs": 100,
+        "epochs": 50,
 
         "save_dir": "saved/",
         "save_period": 1,

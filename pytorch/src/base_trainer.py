@@ -38,8 +38,10 @@ class BaseTrainer:
         self.start_epoch = 1
 
         self.checkpoint_dir = config.save_dir
-           
-        self.writer = TensorboardWriter(config.log_dir, self.logger, cfg_trainer['tensorboard'])
+        if cfg_trainer['tensorboard'] == True:
+            self.writer = TensorboardWriter(config.log_dir, self.logger)#, cfg_trainer['tensorboard'])
+        else:
+            self.writer = None
 
         if not config.resume is None:
             self._resume_checkpoint(config.resume)

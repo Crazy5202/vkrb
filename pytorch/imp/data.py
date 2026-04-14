@@ -1,10 +1,11 @@
-from pytorch.utils.util import load_hs_tiff, load_pkl #, hs_to_tensor_clipping_scaling
+from pytorch.utils.util import load_pkl #load_hs_tiff, hs_to_tensor_clipping_scaling
 from torch.utils.data import Dataset
 
 import pandas as pd
 import os
 from torchvision.transforms import v2
 import torch
+import numpy as np
 
 class HyperTiffDataset(Dataset):
     def __init__(self, annotations_file, img_dir, transform=None, target_transform=None):
@@ -17,9 +18,9 @@ class HyperTiffDataset(Dataset):
         return len(self.img_labels)
 
     def __getitem__(self, idx):
-        img_path = os.path.join(self.img_dir, str(self.img_labels.iloc[idx, 0]) + ".tiff")
-        image = load_hs_tiff(img_path)
-        label = self.img_labels.iloc[idx, -1]
+        img_path = os.path.join(self.img_dir, str(self.img_labels.iloc[idx, 0]) + ".npy")
+        image = torch.from_numpy(np.load(img_path, mmap_mode = 'r+'))
+        label = torch.Tensor(self.img_labels.iloc[idx, -4:].values.astype(int))
         if self.transform:
             image = self.transform(image)
         if self.target_transform:

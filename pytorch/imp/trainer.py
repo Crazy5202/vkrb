@@ -1,4 +1,5 @@
 import torch
+
 from pytorch.src.base_trainer import BaseTrainer
 from pytorch.utils.util import MetricTracker
 
@@ -29,8 +30,22 @@ class Trainer(BaseTrainer):
         """
         self.model.train()
         self.train_metrics.reset()
-        for batch_idx, (data, target) in enumerate(self.data_loader):
-            data, target = data.to(self.device), target.to(self.device)
+
+        loader = self.data_loader
+
+        data_iter = iter(loader)
+
+        next_batch = next(data_iter)
+        next_batch = [_.to(self.device, non_blocking=True) for _ in next_batch]
+
+        for batch_idx in range(len(loader)):
+
+            (data, target) = next_batch 
+
+            if batch_idx + 1 != len(loader): 
+
+                next_batch = next(data_iter)
+                next_batch = [ _.to(self.device, non_blocking=True) for _ in next_batch]
 
             self.optimizer.zero_grad()
             output = self.model(data)
@@ -38,18 +53,16 @@ class Trainer(BaseTrainer):
             loss.backward()
             self.optimizer.step()
 
-            #self.writer.set_step((epoch - 1) * self.len_epoch + batch_idx)
+            self.writer.set_step((epoch - 1) * self.len_epoch + batch_idx)
             self.train_metrics.update('loss', loss.detach().item())
             for met in self.metric_ftns:
-                self.train_metrics.update(met.__name__, met(output, target))
+                self.train_metrics.update(met.__name__, met(self.device, output, target))
 
             self.logger.debug('Train Epoch: {} {} Loss: {:.6f}'.format(
                 epoch,
                 self._progress(batch_idx),
                 loss.detach().item()))
 
-            if batch_idx == self.len_epoch:
-                break
         log = self.train_metrics.result()
 
         if self.do_validation:
@@ -69,22 +82,37 @@ class Trainer(BaseTrainer):
         """
         self.model.eval()
         self.valid_metrics.reset()
+
         with torch.no_grad():
-            for batch_idx, (data, target) in enumerate(self.valid_data_loader):
-                data, target = data.to(self.device), target.to(self.device)
+
+            loader = self.valid_data_loader
+
+            data_iter = iter(loader)
+
+            next_batch = next(data_iter)
+            next_batch = [_.to(self.device, non_blocking=True) for _ in next_batch]
+
+            for batch_idx in range(len(loader)):
+
+                (data, target) = next_batch 
+
+                if batch_idx + 1 != len(loader): 
+
+                    next_batch = next(data_iter)
+                    next_batch = [ _.to(self.device, non_blocking=True) for _ in next_batch]
 
                 output = self.model(data)
                 loss = self.criterion(output, target)
 
-                #self.writer.set_step((epoch - 1) * len(self.valid_data_loader) + batch_idx, 'valid')
+                self.writer.set_step((epoch - 1) * len(self.valid_data_loader) + batch_idx, 'valid')
                 self.valid_metrics.update('loss', loss.detach().item())
                 for met in self.metric_ftns:
-                    self.valid_metrics.update(met.__name__, met(output, target))
+                    self.valid_metrics.update(met.__name__, met(self.device, output, target))
 
         return self.valid_metrics.result()
 
     def _progress(self, batch_idx):
         base = '[{}/{} ({:.0f}%)]'
-        current = batch_idx * self.data_loader.batch_size
         total = self.data_loader.n_samples
+        current = min((batch_idx + 1) * self.data_loader.batch_size, total)
         return base.format(current, total, 100.0 * current / total)
