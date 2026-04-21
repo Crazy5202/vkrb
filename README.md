@@ -6,5 +6,5 @@
 
 Команда для запуска tensorboard:
 ```
-tensorboard --logdir saved/log/
+tensorboard --logdir results/logs/
 ```
