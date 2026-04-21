@@ -11,7 +11,8 @@ class BaseDataLoader(DataLoader):
     """
     def __init__(self, dataset, batch_size, shuffle = True, validation_split = 0.0, 
                 collate_fn=default_collate, num_workers = 0, prefetch_factor=None, 
-                pin_memory=False, persistent_workers=False, drop_last=False):
+                pin_memory=False, persistent_workers=False, drop_last=False,
+                val_dataset=None, val_batch_size = None, val_workers = None, val_prefetch = None,):
         self.validation_split = validation_split
         self.shuffle = shuffle
 
@@ -20,7 +21,7 @@ class BaseDataLoader(DataLoader):
 
         self.sampler, self.valid_sampler = self._split_sampler(self.validation_split)
 
-        self.init_kwargs = {
+        self.main_kwargs = {
             'dataset': dataset,
             'batch_size': batch_size,
             'shuffle': self.shuffle,
@@ -31,7 +32,21 @@ class BaseDataLoader(DataLoader):
             'persistent_workers': persistent_workers,
             'drop_last': drop_last
         }
-        super().__init__(sampler=self.sampler, **self.init_kwargs)
+
+        if self.valid_sampler is not None:
+            self.val_kwargs = {
+                'dataset': val_dataset if val_dataset is not None else dataset,
+                'batch_size': val_batch_size if val_batch_size is not None else batch_size,
+                'shuffle': self.shuffle,
+                'collate_fn': collate_fn,
+                'num_workers': val_workers if val_workers is not None else num_workers,
+                'pin_memory': pin_memory,
+                'prefetch_factor': val_prefetch if val_prefetch is not None else prefetch_factor,
+                'persistent_workers': persistent_workers,
+                'drop_last': drop_last
+            }
+
+        super().__init__(sampler=self.sampler, **self.main_kwargs)
 
     def _split_sampler(self, split) -> Tuple[Optional[SubsetRandomSampler], Optional[SubsetRandomSampler]]:
         if split == 0.0:
@@ -39,7 +54,8 @@ class BaseDataLoader(DataLoader):
 
         idx_full = np.arange(self.n_samples)
 
-        np.random.seed(0)
+        rng = np.random.default_rng(0)
+        rng.shuffle(idx_full)
         np.random.shuffle(idx_full)
 
         if isinstance(split, int):
@@ -64,4 +80,4 @@ class BaseDataLoader(DataLoader):
         if self.valid_sampler is None:
             return None
         else:
-            return DataLoader(sampler=self.valid_sampler, **self.init_kwargs)
+            return DataLoader(sampler=self.valid_sampler, **self.val_kwargs)

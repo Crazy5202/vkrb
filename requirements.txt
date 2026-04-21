@@ -1,0 +1,11 @@
+torch==2.8.0.dev20250423+cu128
+torchvision==0.22.0.dev20250424+cu128
+torchmetrics==1.8.2
+tensorboard==2.20.0
+tensorly-torch==0.5.0
+pandas==2.3.3
+numpy==2.0.2
+tifffile==2024.8.30
+
+#timm==1.0.26
+#teneva==0.14.9

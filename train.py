@@ -25,9 +25,6 @@ def main(config: ConfigParser):
 
     device, device_ids = prepare_device(config['n_gpu'])
     
-    # if config['model_bf16'] == True:
-    #     model = model.to(device, torch.bfloat16)
-    # else:
     model = model.to(device)
 
     if len(device_ids) > 1:
@@ -38,26 +35,38 @@ def main(config: ConfigParser):
 
     trainable_params = filter(lambda p: p.requires_grad, model.parameters())
     optimizer = config.init_obj('optimizer', torch.optim, trainable_params)
+
     lr_scheduler = config.init_obj('lr_scheduler', torch.optim.lr_scheduler, optimizer)
+    if config['warmup'] == True:
+        warmup_scheduler = config.init_obj('warmup_scheduler', torch.optim.lr_scheduler, optimizer)
+        lr_scheduler = torch.optim.lr_scheduler.SequentialLR(
+            optimizer,
+            schedulers=[warmup_scheduler, lr_scheduler],
+            milestones=[config['warmup_scheduler']['args']['total_iters']]
+        )
+
+    bf16_flag = config['bf16']
+
+    grad_clip_val = None
+    if config['grad_clip'] == True:
+        grad_clip_val = config['grad_clip']
 
     trainer = Trainer(model, criterion, metrics, optimizer,
                       config=config,
                       device=device,
                       data_loader=train_dataloader,
                       valid_data_loader=valid_data_loader,
-                      lr_scheduler=lr_scheduler)
+                      lr_scheduler=lr_scheduler, bf16=bf16_flag, 
+                      grad_accum_steps=config['grad_accum_steps'],
+                      grad_clip_val=grad_clip_val)
 
-    if config['train_bf16'] == True:
-        with torch.autocast(device_type=device.type, dtype=torch.bfloat16):
-            trainer.train()
-    else:
-        trainer.train()
+    trainer.train()
 
 if __name__ == '__main__':
     
-    model_path = "" #"saved/models/TT_HS/0401_015648/"
-    config_path = model_path + "config.json"
-    resume_path = None #model_path + "checkpoint-epoch3.pth"
+    model_path = "."#saved\models\Squeeze_MobileNet_V3\\0417_152013"
+    config_path = model_path + "\\config.json"
+    resume_path = None#model_path + "\\model_best.pth" #"\\checkpoint-epoch5.pth"
     config = ConfigParser(config_path, resume=resume_path)
 
     main(config)

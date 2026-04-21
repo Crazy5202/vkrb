@@ -2,16 +2,14 @@ from pytorch.imp.dataloader_test import test_dataloader
 import pytorch.imp.metric as module_metric
 import pytorch.imp.model as module_arch
 
-# import pytorch.imp.loss as module_loss
-# from pytorch.imp.trainer import Trainer
-# from pytorch.utils.config import ConfigParser
-# from pytorch.utils.util import prepare_device
-
 import torch
 import numpy as np
 import time
 
-def measure_inference_metric(model, data_loader, device, metric_fns: list, warmup_steps = True):
+#from thop import profile
+#from fvcore.nn import FlopCountAnalysis
+
+def measure_inference_metric(model, data_loader, device, metric_fns: list):
     """
     Measures average inference time per batch.
     """
@@ -25,26 +23,34 @@ def measure_inference_metric(model, data_loader, device, metric_fns: list, warmu
         start_event = torch.cuda.Event(enable_timing=True)
         end_event = torch.cuda.Event(enable_timing=True)
 
-    if warmup_steps:
-        print("  Warming up...")
-        with torch.no_grad():
-            loader = data_loader
+    #params = -1
+    #flops = -1
 
-            data_iter = iter(loader)
+    print("  Warming up...")
+    with torch.no_grad():
+        loader = data_loader
 
-            next_batch = next(data_iter)
-            next_batch = [_.to(device, non_blocking=True) for _ in next_batch]
+        data_iter = iter(loader)
 
-            for batch_idx in range(len(loader)):
+        next_batch = next(data_iter)
+        next_batch = [_.to(device, non_blocking=True) for _ in next_batch]
 
-                (data, target) = next_batch 
+        #input = next_batch[0][0].unsqueeze(0)
 
-                if batch_idx + 1 != len(loader): 
+        #flops = FlopCountAnalysis(model, input).total()
 
-                    next_batch = next(data_iter)
-                    next_batch = [ _.to(device, non_blocking=True) for _ in next_batch]
+        #flops, params = profile(model, (input,), verbose=False)
 
-                output = model(data)
+        for batch_idx in range(len(loader)):
+
+            (data, target) = next_batch 
+
+            if batch_idx + 1 != len(loader): 
+
+                next_batch = next(data_iter)
+                next_batch = [ _.to(device, non_blocking=True) for _ in next_batch]
+
+            output = model(data)
 
     print("  Timing inference...")
     times = []
@@ -78,10 +84,11 @@ def measure_inference_metric(model, data_loader, device, metric_fns: list, warmu
                 times.append(start_event.elapsed_time(end_event))
             else:
                 end_time = time.perf_counter()
-                times.append(end_time - start_time)
+                times.append((end_time - start_time)*1000)
 
             for i in range(len(metric_fns)):
                 score = metric_fns[i](device, output, target)
+                #print(score.item() if torch.is_tensor(score) else score)
                 total_scores[i] += score.item() if torch.is_tensor(score) else score
 
             count += 1
@@ -90,7 +97,7 @@ def measure_inference_metric(model, data_loader, device, metric_fns: list, warmu
     std_time_ms = (np.std(times))
     for i in range(len(metric_fns)):
         total_scores[i] = total_scores[i] / count if count > 0 else 0
-    return avg_time_ms, std_time_ms, total_scores
+    return avg_time_ms, std_time_ms, total_scores#, params, flops
 
 def get_results(device, model_configs, metric_fns):
 
@@ -98,8 +105,6 @@ def get_results(device, model_configs, metric_fns):
 
     for name, model, path in model_configs:
         print(f"Processing: {name}...")
-        
-        model = model()
 
         try:
             checkpoint = torch.load(path, weights_only=False)
@@ -108,15 +113,14 @@ def get_results(device, model_configs, metric_fns):
             print(f"  File not found: {path}. Skipping.")
             continue
 
-        # train_dataloader = module_data.train_dataloader
-        # valid_data_loader = train_dataloader.split_validation()
-
-        avg_time, std_time, metric_values = measure_inference_metric(model, test_dataloader, device, metric_fns)
+        avg_time, std_time, metric_values = measure_inference_metric(model, test_dataloader, device, metric_fns)#, warmup_steps=False)
 
         res_dict = {
             "Model": name,
             "Latency (ms)": round(avg_time, 4),
-            "Std Dev (ms)": round(std_time, 4)
+            "Std Dev (ms)": round(std_time, 4),
+            #"Million Parameters:": round(params/1e6, 4),
+            #"GFLOPs": round(flops/1e9, 4)
         }
 
         for i in range(len(metric_fns)):
@@ -124,13 +128,16 @@ def get_results(device, model_configs, metric_fns):
 
         results.append(res_dict)
 
-    print(results)
+    for entry in results:
+        print(entry)
 
 if __name__ == "__main__":
     DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
     MODEL_CONFIGS = [
-        ("Original (Dense)", module_arch.SS_ConvNeXt_HSI, "ss_2242_32_best.pth"),
+        ("Original (Dense)", module_arch.SS_ConvNeXt_HSI_V2(), "results/models/best_ssv2.pth"),
+        ("TT (With KD)", module_arch.get_convnext_tt(), "results/models/best_ssv2_tt_kd.pth"),
+        ("Structured Pruning (With KD)", module_arch.get_convnext_pruned(), "results/models/best_ssv2_struct_pruned_kd.pth")
     ]
 
     METRIC_FNS = [module_metric.OA, module_metric.AA]

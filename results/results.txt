@@ -1,0 +1,3 @@
+{'Model': 'Original (Dense)', 'Latency (ms)': np.float64(56.2261), 'Std Dev (ms)': np.float64(6.2541), 'OA': 0.8822, 'AA': 0.8681}
+{'Model': 'TT (With KD)', 'Latency (ms)': np.float64(62.3175), 'Std Dev (ms)': np.float64(4.9467), 'OA': 0.8822, 'AA': 0.8965}
+{'Model': 'Structured Pruning (With KD)', 'Latency (ms)': np.float64(45.9712), 'Std Dev (ms)': np.float64(5.1124), 'OA': 0.8714, 'AA': 0.8645}

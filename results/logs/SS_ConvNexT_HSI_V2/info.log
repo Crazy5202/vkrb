@@ -1,0 +1,1473 @@
+2026-04-19 15:21:53,894 - train - INFO - SS_ConvNeXt_V2(
+  (downsample_layers): ModuleList(
+    (0): Sequential(
+      (0): Conv2d(204, 64, kernel_size=(1, 1), stride=(1, 1))
+      (1): LayerNorm()
+      (2): GELU(approximate='none')
+    )
+    (1): Sequential(
+      (0): LayerNorm()
+      (1): Conv2d(64, 128, kernel_size=(2, 2), stride=(2, 2))
+    )
+    (2): Sequential(
+      (0): LayerNorm()
+      (1): Conv2d(128, 256, kernel_size=(2, 2), stride=(2, 2))
+    )
+    (3): Sequential(
+      (0): LayerNorm()
+      (1): Conv2d(256, 512, kernel_size=(2, 2), stride=(2, 2))
+    )
+  )
+  (main_layers): ModuleList(
+    (0): Sequential(
+      (0): spatial_ConvBlock(
+        (dwconv): Conv2d(64, 64, kernel_size=(3, 11), stride=(1, 1), padding=same, groups=64)
+        (norm): LayerNorm()
+        (pwconv1): Linear(in_features=64, out_features=256, bias=True)
+        (act): GELU(approximate='none')
+        (grn): GRN()
+        (pwconv2): Linear(in_features=256, out_features=64, bias=True)
+        (drop_path): Identity()
+      )
+      (1): spectral_ConvBlock(
+        (dwconv): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+        (norm): LayerNorm()
+        (pwconv1): Linear(in_features=64, out_features=256, bias=True)
+        (act): GELU(approximate='none')
+        (grn): GRN()
+        (pwconv2): Linear(in_features=256, out_features=64, bias=True)
+        (drop_path): DropPath()
+      )
+    )
+    (1): Sequential(
+      (0): spatial_ConvBlock(
+        (dwconv): Conv2d(128, 128, kernel_size=(3, 11), stride=(1, 1), padding=same, groups=128)
+        (norm): LayerNorm()
+        (pwconv1): Linear(in_features=128, out_features=512, bias=True)
+        (act): GELU(approximate='none')
+        (grn): GRN()
+        (pwconv2): Linear(in_features=512, out_features=128, bias=True)
+        (drop_path): DropPath()
+      )
+      (1): spectral_ConvBlock(
+        (dwconv): Conv2d(128, 128, kernel_size=(1, 1), stride=(1, 1))
+        (norm): LayerNorm()
+        (pwconv1): Linear(in_features=128, out_features=512, bias=True)
+        (act): GELU(approximate='none')
+        (grn): GRN()
+        (pwconv2): Linear(in_features=512, out_features=128, bias=True)
+        (drop_path): DropPath()
+      )
+    )
+    (2): Sequential(
+      (0): spatial_ConvBlock(
+        (dwconv): Conv2d(256, 256, kernel_size=(3, 11), stride=(1, 1), padding=same, groups=256)
+        (norm): LayerNorm()
+        (pwconv1): Linear(in_features=256, out_features=1024, bias=True)
+        (act): GELU(approximate='none')
+        (grn): GRN()
+        (pwconv2): Linear(in_features=1024, out_features=256, bias=True)
+        (drop_path): DropPath()
+      )
+      (1): spatial_ConvBlock(
+        (dwconv): Conv2d(256, 256, kernel_size=(3, 11), stride=(1, 1), padding=same, groups=256)
+        (norm): LayerNorm()
+        (pwconv1): Linear(in_features=256, out_features=1024, bias=True)
+        (act): GELU(approximate='none')
+        (grn): GRN()
+        (pwconv2): Linear(in_features=1024, out_features=256, bias=True)
+        (drop_path): DropPath()
+      )
+      (2): spectral_ConvBlock(
+        (dwconv): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (norm): LayerNorm()
+        (pwconv1): Linear(in_features=256, out_features=1024, bias=True)
+        (act): GELU(approximate='none')
+        (grn): GRN()
+        (pwconv2): Linear(in_features=1024, out_features=256, bias=True)
+        (drop_path): DropPath()
+      )
+      (3): spectral_ConvBlock(
+        (dwconv): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (norm): LayerNorm()
+        (pwconv1): Linear(in_features=256, out_features=1024, bias=True)
+        (act): GELU(approximate='none')
+        (grn): GRN()
+        (pwconv2): Linear(in_features=1024, out_features=256, bias=True)
+        (drop_path): DropPath()
+      )
+    )
+    (3): Sequential(
+      (0): spatial_ConvBlock(
+        (dwconv): Conv2d(512, 512, kernel_size=(3, 11), stride=(1, 1), padding=same, groups=512)
+        (norm): LayerNorm()
+        (pwconv1): Linear(in_features=512, out_features=2048, bias=True)
+        (act): GELU(approximate='none')
+        (grn): GRN()
+        (pwconv2): Linear(in_features=2048, out_features=512, bias=True)
+        (drop_path): DropPath()
+      )
+      (1): spectral_ConvBlock(
+        (dwconv): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1))
+        (norm): LayerNorm()
+        (pwconv1): Linear(in_features=512, out_features=2048, bias=True)
+        (act): GELU(approximate='none')
+        (grn): GRN()
+        (pwconv2): Linear(in_features=2048, out_features=512, bias=True)
+        (drop_path): DropPath()
+      )
+    )
+  )
+  (ln): LayerNorm()
+  (fc): Linear(in_features=512, out_features=4, bias=True)
+  (activate): GELU(approximate='none')
+)
+Trainable parameters: 7818116
+2026-04-19 15:25:46,889 - trainer - INFO -     epoch          : 1
+2026-04-19 15:25:46,890 - trainer - INFO -     loss           : 1.3817672193050385
+2026-04-19 15:25:46,891 - trainer - INFO -     OA             : 0.30078125
+2026-04-19 15:25:46,891 - trainer - INFO -     AA             : 0.2783779799938202
+2026-04-19 15:25:46,892 - trainer - INFO -     val_loss       : 1.3289259016513824
+2026-04-19 15:25:46,893 - trainer - INFO -     val_OA         : 0.25133928656578064
+2026-04-19 15:25:46,893 - trainer - INFO -     val_AA         : 0.2525000274181366
+2026-04-19 15:25:47,173 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch1.pth ...
+2026-04-19 15:25:47,343 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-19 15:27:23,285 - trainer - INFO -     epoch          : 2
+2026-04-19 15:27:23,285 - trainer - INFO -     loss           : 1.2366167277097702
+2026-04-19 15:27:23,286 - trainer - INFO -     OA             : 0.4671874940395355
+2026-04-19 15:27:23,287 - trainer - INFO -     AA             : 0.4796693027019501
+2026-04-19 15:27:23,287 - trainer - INFO -     val_loss       : 1.1503598093986511
+2026-04-19 15:27:23,288 - trainer - INFO -     val_OA         : 0.5410714149475098
+2026-04-19 15:27:23,289 - trainer - INFO -     val_AA         : 0.5335714817047119
+2026-04-19 15:27:23,479 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch2.pth ...
+2026-04-19 15:27:23,651 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-19 15:28:32,647 - trainer - INFO -     epoch          : 3
+2026-04-19 15:28:32,647 - trainer - INFO -     loss           : 1.135108971595764
+2026-04-19 15:28:32,648 - trainer - INFO -     OA             : 0.547656238079071
+2026-04-19 15:28:32,649 - trainer - INFO -     AA             : 0.5471019744873047
+2026-04-19 15:28:32,649 - trainer - INFO -     val_loss       : 1.0451216906309129
+2026-04-19 15:28:32,650 - trainer - INFO -     val_OA         : 0.6227678656578064
+2026-04-19 15:28:32,651 - trainer - INFO -     val_AA         : 0.6212351322174072
+2026-04-19 15:28:32,833 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch3.pth ...
+2026-04-19 15:28:33,014 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-19 15:29:55,760 - trainer - INFO -     epoch          : 4
+2026-04-19 15:29:55,761 - trainer - INFO -     loss           : 1.0885545052587986
+2026-04-19 15:29:55,762 - trainer - INFO -     OA             : 0.5859375
+2026-04-19 15:29:55,763 - trainer - INFO -     AA             : 0.5930356383323669
+2026-04-19 15:29:55,763 - trainer - INFO -     val_loss       : 1.0099075943231584
+2026-04-19 15:29:55,764 - trainer - INFO -     val_OA         : 0.688839316368103
+2026-04-19 15:29:55,765 - trainer - INFO -     val_AA         : 0.7027925848960876
+2026-04-19 15:29:55,937 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch4.pth ...
+2026-04-19 15:29:56,108 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-19 15:30:54,820 - trainer - INFO -     epoch          : 5
+2026-04-19 15:30:54,821 - trainer - INFO -     loss           : 1.062546157836914
+2026-04-19 15:30:54,822 - trainer - INFO -     OA             : 0.5835937857627869
+2026-04-19 15:30:54,822 - trainer - INFO -     AA             : 0.5821031928062439
+2026-04-19 15:30:54,823 - trainer - INFO -     val_loss       : 0.9410902976989746
+2026-04-19 15:30:54,824 - trainer - INFO -     val_OA         : 0.7392857074737549
+2026-04-19 15:30:54,824 - trainer - INFO -     val_AA         : 0.7437053918838501
+2026-04-19 15:30:54,994 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch5.pth ...
+2026-04-19 15:30:55,165 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-19 15:31:54,052 - trainer - INFO -     epoch          : 6
+2026-04-19 15:31:54,053 - trainer - INFO -     loss           : 1.0348077610135078
+2026-04-19 15:31:54,054 - trainer - INFO -     OA             : 0.6390625238418579
+2026-04-19 15:31:54,054 - trainer - INFO -     AA             : 0.6438602805137634
+2026-04-19 15:31:54,055 - trainer - INFO -     val_loss       : 0.9196044027805328
+2026-04-19 15:31:54,056 - trainer - INFO -     val_OA         : 0.7004464268684387
+2026-04-19 15:31:54,056 - trainer - INFO -     val_AA         : 0.718080461025238
+2026-04-19 15:31:54,230 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch6.pth ...
+2026-04-19 15:31:54,396 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-19 15:32:55,554 - trainer - INFO -     epoch          : 7
+2026-04-19 15:32:55,555 - trainer - INFO -     loss           : 1.001540122181177
+2026-04-19 15:32:55,556 - trainer - INFO -     OA             : 0.647656261920929
+2026-04-19 15:32:55,557 - trainer - INFO -     AA             : 0.6505171060562134
+2026-04-19 15:32:55,558 - trainer - INFO -     val_loss       : 0.9224072337150574
+2026-04-19 15:32:55,559 - trainer - INFO -     val_OA         : 0.7584821581840515
+2026-04-19 15:32:55,560 - trainer - INFO -     val_AA         : 0.7668750286102295
+2026-04-19 15:32:55,749 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch7.pth ...
+2026-04-19 15:33:54,918 - trainer - INFO -     epoch          : 8
+2026-04-19 15:33:54,919 - trainer - INFO -     loss           : 0.9619085572659969
+2026-04-19 15:33:54,919 - trainer - INFO -     OA             : 0.676562488079071
+2026-04-19 15:33:54,920 - trainer - INFO -     AA             : 0.6643638610839844
+2026-04-19 15:33:54,921 - trainer - INFO -     val_loss       : 0.9292956441640854
+2026-04-19 15:33:54,921 - trainer - INFO -     val_OA         : 0.7223214507102966
+2026-04-19 15:33:54,922 - trainer - INFO -     val_AA         : 0.7085862159729004
+2026-04-19 15:33:55,106 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch8.pth ...
+2026-04-19 15:34:53,381 - trainer - INFO -     epoch          : 9
+2026-04-19 15:34:53,382 - trainer - INFO -     loss           : 0.952099247276783
+2026-04-19 15:34:53,382 - trainer - INFO -     OA             : 0.672656238079071
+2026-04-19 15:34:53,383 - trainer - INFO -     AA             : 0.6502370238304138
+2026-04-19 15:34:53,384 - trainer - INFO -     val_loss       : 0.9099289000034332
+2026-04-19 15:34:53,385 - trainer - INFO -     val_OA         : 0.6933035850524902
+2026-04-19 15:34:53,386 - trainer - INFO -     val_AA         : 0.6753869652748108
+2026-04-19 15:34:53,558 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch9.pth ...
+2026-04-19 15:34:53,728 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-19 15:36:14,296 - trainer - INFO -     epoch          : 10
+2026-04-19 15:36:14,297 - trainer - INFO -     loss           : 0.9179450519382953
+2026-04-19 15:36:14,298 - trainer - INFO -     OA             : 0.698437511920929
+2026-04-19 15:36:14,298 - trainer - INFO -     AA             : 0.7000631093978882
+2026-04-19 15:36:14,299 - trainer - INFO -     val_loss       : 0.8027403295040131
+2026-04-19 15:36:14,300 - trainer - INFO -     val_OA         : 0.8008928298950195
+2026-04-19 15:36:14,300 - trainer - INFO -     val_AA         : 0.811830461025238
+2026-04-19 15:36:14,479 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch10.pth ...
+2026-04-19 15:36:14,651 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-19 15:37:13,609 - trainer - INFO -     epoch          : 11
+2026-04-19 15:37:13,610 - trainer - INFO -     loss           : 0.932387013733387
+2026-04-19 15:37:13,610 - trainer - INFO -     OA             : 0.6859375238418579
+2026-04-19 15:37:13,611 - trainer - INFO -     AA             : 0.6909202933311462
+2026-04-19 15:37:13,612 - trainer - INFO -     val_loss       : 0.8543645322322846
+2026-04-19 15:37:13,613 - trainer - INFO -     val_OA         : 0.7419642806053162
+2026-04-19 15:37:13,613 - trainer - INFO -     val_AA         : 0.7278671264648438
+2026-04-19 15:37:13,795 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch11.pth ...
+2026-04-19 15:38:13,076 - trainer - INFO -     epoch          : 12
+2026-04-19 15:38:13,077 - trainer - INFO -     loss           : 0.8968976534903049
+2026-04-19 15:38:13,078 - trainer - INFO -     OA             : 0.7085937857627869
+2026-04-19 15:38:13,078 - trainer - INFO -     AA             : 0.7023224234580994
+2026-04-19 15:38:13,079 - trainer - INFO -     val_loss       : 0.7596841305494308
+2026-04-19 15:38:13,080 - trainer - INFO -     val_OA         : 0.7964286208152771
+2026-04-19 15:38:13,080 - trainer - INFO -     val_AA         : 0.7957143187522888
+2026-04-19 15:38:13,265 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch12.pth ...
+2026-04-19 15:38:13,441 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-19 15:39:35,089 - trainer - INFO -     epoch          : 13
+2026-04-19 15:39:35,090 - trainer - INFO -     loss           : 0.8715500071644783
+2026-04-19 15:39:35,091 - trainer - INFO -     OA             : 0.739062488079071
+2026-04-19 15:39:35,091 - trainer - INFO -     AA             : 0.727911651134491
+2026-04-19 15:39:35,092 - trainer - INFO -     val_loss       : 0.7504982978105545
+2026-04-19 15:39:35,093 - trainer - INFO -     val_OA         : 0.8308035731315613
+2026-04-19 15:39:35,093 - trainer - INFO -     val_AA         : 0.8313326835632324
+2026-04-19 15:39:35,277 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch13.pth ...
+2026-04-19 15:39:35,453 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-19 15:40:55,268 - trainer - INFO -     epoch          : 14
+2026-04-19 15:40:55,269 - trainer - INFO -     loss           : 0.8627405665814877
+2026-04-19 15:40:55,270 - trainer - INFO -     OA             : 0.725781261920929
+2026-04-19 15:40:55,271 - trainer - INFO -     AA             : 0.7139582633972168
+2026-04-19 15:40:55,271 - trainer - INFO -     val_loss       : 0.7539426237344742
+2026-04-19 15:40:55,272 - trainer - INFO -     val_OA         : 0.8138392567634583
+2026-04-19 15:40:55,273 - trainer - INFO -     val_AA         : 0.8186012506484985
+2026-04-19 15:40:55,453 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch14.pth ...
+2026-04-19 15:41:57,723 - trainer - INFO -     epoch          : 15
+2026-04-19 15:41:57,724 - trainer - INFO -     loss           : 0.8550090871751308
+2026-04-19 15:41:57,725 - trainer - INFO -     OA             : 0.741406261920929
+2026-04-19 15:41:57,726 - trainer - INFO -     AA             : 0.7360045313835144
+2026-04-19 15:41:57,726 - trainer - INFO -     val_loss       : 0.7038210242986679
+2026-04-19 15:41:57,727 - trainer - INFO -     val_OA         : 0.8531250357627869
+2026-04-19 15:41:57,728 - trainer - INFO -     val_AA         : 0.84014892578125
+2026-04-19 15:41:57,955 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch15.pth ...
+2026-04-19 15:41:58,176 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-19 15:42:58,017 - trainer - INFO -     epoch          : 16
+2026-04-19 15:42:58,018 - trainer - INFO -     loss           : 0.8506296686828136
+2026-04-19 15:42:58,019 - trainer - INFO -     OA             : 0.731249988079071
+2026-04-19 15:42:58,020 - trainer - INFO -     AA             : 0.7329537272453308
+2026-04-19 15:42:58,020 - trainer - INFO -     val_loss       : 0.7188192754983902
+2026-04-19 15:42:58,021 - trainer - INFO -     val_OA         : 0.8272321820259094
+2026-04-19 15:42:58,022 - trainer - INFO -     val_AA         : 0.8461259007453918
+2026-04-19 15:42:58,199 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch16.pth ...
+2026-04-19 15:43:57,411 - trainer - INFO -     epoch          : 17
+2026-04-19 15:43:57,412 - trainer - INFO -     loss           : 0.8204959169030189
+2026-04-19 15:43:57,413 - trainer - INFO -     OA             : 0.76171875
+2026-04-19 15:43:57,413 - trainer - INFO -     AA             : 0.7642361521720886
+2026-04-19 15:43:57,414 - trainer - INFO -     val_loss       : 0.7469973355531693
+2026-04-19 15:43:57,414 - trainer - INFO -     val_OA         : 0.8116071820259094
+2026-04-19 15:43:57,415 - trainer - INFO -     val_AA         : 0.8252381682395935
+2026-04-19 15:43:57,591 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch17.pth ...
+2026-04-19 15:45:00,578 - trainer - INFO -     epoch          : 18
+2026-04-19 15:45:00,578 - trainer - INFO -     loss           : 0.827940933406353
+2026-04-19 15:45:00,579 - trainer - INFO -     OA             : 0.76953125
+2026-04-19 15:45:00,580 - trainer - INFO -     AA             : 0.7643725275993347
+2026-04-19 15:45:00,580 - trainer - INFO -     val_loss       : 0.6823192119598389
+2026-04-19 15:45:00,581 - trainer - INFO -     val_OA         : 0.862500011920929
+2026-04-19 15:45:00,582 - trainer - INFO -     val_AA         : 0.8683928847312927
+2026-04-19 15:45:00,760 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch18.pth ...
+2026-04-19 15:45:00,929 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-19 15:46:16,995 - trainer - INFO -     epoch          : 19
+2026-04-19 15:46:16,995 - trainer - INFO -     loss           : 0.8277157828211784
+2026-04-19 15:46:16,996 - trainer - INFO -     OA             : 0.7632812857627869
+2026-04-19 15:46:16,997 - trainer - INFO -     AA             : 0.7715885043144226
+2026-04-19 15:46:16,997 - trainer - INFO -     val_loss       : 0.7197977662086487
+2026-04-19 15:46:16,998 - trainer - INFO -     val_OA         : 0.8178572058677673
+2026-04-19 15:46:16,999 - trainer - INFO -     val_AA         : 0.8010416030883789
+2026-04-19 15:46:17,178 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch19.pth ...
+2026-04-19 15:47:15,683 - trainer - INFO -     epoch          : 20
+2026-04-19 15:47:15,683 - trainer - INFO -     loss           : 0.8128900669515133
+2026-04-19 15:47:15,684 - trainer - INFO -     OA             : 0.766406238079071
+2026-04-19 15:47:15,685 - trainer - INFO -     AA             : 0.7640613913536072
+2026-04-19 15:47:15,685 - trainer - INFO -     val_loss       : 0.6853487938642502
+2026-04-19 15:47:15,686 - trainer - INFO -     val_OA         : 0.8334822058677673
+2026-04-19 15:47:15,687 - trainer - INFO -     val_AA         : 0.8181250691413879
+2026-04-19 15:47:15,868 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch20.pth ...
+2026-04-19 15:48:16,724 - trainer - INFO -     epoch          : 21
+2026-04-19 15:48:16,725 - trainer - INFO -     loss           : 0.7883030660450459
+2026-04-19 15:48:16,726 - trainer - INFO -     OA             : 0.77734375
+2026-04-19 15:48:16,727 - trainer - INFO -     AA             : 0.7655579447746277
+2026-04-19 15:48:16,728 - trainer - INFO -     val_loss       : 0.7121157288551331
+2026-04-19 15:48:16,729 - trainer - INFO -     val_OA         : 0.8133928179740906
+2026-04-19 15:48:16,729 - trainer - INFO -     val_AA         : 0.7943601012229919
+2026-04-19 15:48:16,908 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch21.pth ...
+2026-04-19 15:49:42,412 - trainer - INFO -     epoch          : 22
+2026-04-19 15:49:42,412 - trainer - INFO -     loss           : 0.7619220204651356
+2026-04-19 15:49:42,413 - trainer - INFO -     OA             : 0.800000011920929
+2026-04-19 15:49:42,414 - trainer - INFO -     AA             : 0.8101301193237305
+2026-04-19 15:49:42,414 - trainer - INFO -     val_loss       : 0.7039533391594887
+2026-04-19 15:49:42,415 - trainer - INFO -     val_OA         : 0.8200892806053162
+2026-04-19 15:49:42,416 - trainer - INFO -     val_AA         : 0.8264881372451782
+2026-04-19 15:49:42,594 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch22.pth ...
+2026-04-19 15:50:58,010 - trainer - INFO -     epoch          : 23
+2026-04-19 15:50:58,010 - trainer - INFO -     loss           : 0.7913226671516895
+2026-04-19 15:50:58,011 - trainer - INFO -     OA             : 0.7632812857627869
+2026-04-19 15:50:58,011 - trainer - INFO -     AA             : 0.7760836482048035
+2026-04-19 15:50:58,013 - trainer - INFO -     val_loss       : 0.717823339998722
+2026-04-19 15:50:58,013 - trainer - INFO -     val_OA         : 0.8272321820259094
+2026-04-19 15:50:58,013 - trainer - INFO -     val_AA         : 0.8259374499320984
+2026-04-19 15:50:58,192 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch23.pth ...
+2026-04-19 15:52:00,816 - trainer - INFO -     epoch          : 24
+2026-04-19 15:52:00,817 - trainer - INFO -     loss           : 0.7427203856408596
+2026-04-19 15:52:00,818 - trainer - INFO -     OA             : 0.807812511920929
+2026-04-19 15:52:00,819 - trainer - INFO -     AA             : 0.8087847828865051
+2026-04-19 15:52:00,819 - trainer - INFO -     val_loss       : 0.6341596484184265
+2026-04-19 15:52:00,820 - trainer - INFO -     val_OA         : 0.8674107789993286
+2026-04-19 15:52:00,821 - trainer - INFO -     val_AA         : 0.8625892996788025
+2026-04-19 15:52:01,002 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch24.pth ...
+2026-04-19 15:52:01,175 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-19 15:54:25,837 - trainer - INFO -     epoch          : 25
+2026-04-19 15:54:25,837 - trainer - INFO -     loss           : 0.7329937770962716
+2026-04-19 15:54:25,838 - trainer - INFO -     OA             : 0.811718761920929
+2026-04-19 15:54:25,839 - trainer - INFO -     AA             : 0.8232490420341492
+2026-04-19 15:54:25,839 - trainer - INFO -     val_loss       : 0.6250660121440887
+2026-04-19 15:54:25,840 - trainer - INFO -     val_OA         : 0.8897321820259094
+2026-04-19 15:54:25,841 - trainer - INFO -     val_AA         : 0.8884226083755493
+2026-04-19 15:54:26,020 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch25.pth ...
+2026-04-19 15:54:26,195 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-19 15:55:47,805 - trainer - INFO -     epoch          : 26
+2026-04-19 15:55:47,805 - trainer - INFO -     loss           : 0.7385511282831431
+2026-04-19 15:55:47,806 - trainer - INFO -     OA             : 0.8109375238418579
+2026-04-19 15:55:47,807 - trainer - INFO -     AA             : 0.8053632974624634
+2026-04-19 15:55:47,807 - trainer - INFO -     val_loss       : 0.6130515053868294
+2026-04-19 15:55:47,808 - trainer - INFO -     val_OA         : 0.8656250238418579
+2026-04-19 15:55:47,808 - trainer - INFO -     val_AA         : 0.8571130037307739
+2026-04-19 15:55:47,988 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch26.pth ...
+2026-04-19 15:55:48,160 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-19 15:56:49,368 - trainer - INFO -     epoch          : 27
+2026-04-19 15:56:49,369 - trainer - INFO -     loss           : 0.7354371268302202
+2026-04-19 15:56:49,370 - trainer - INFO -     OA             : 0.8070312738418579
+2026-04-19 15:56:49,370 - trainer - INFO -     AA             : 0.8120989799499512
+2026-04-19 15:56:49,371 - trainer - INFO -     val_loss       : 0.7075429737567902
+2026-04-19 15:56:49,372 - trainer - INFO -     val_OA         : 0.7950893044471741
+2026-04-19 15:56:49,372 - trainer - INFO -     val_AA         : 0.8147768378257751
+2026-04-19 15:56:49,553 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch27.pth ...
+2026-04-19 15:58:04,797 - trainer - INFO -     epoch          : 28
+2026-04-19 15:58:04,798 - trainer - INFO -     loss           : 0.6945508942008018
+2026-04-19 15:58:04,799 - trainer - INFO -     OA             : 0.835156261920929
+2026-04-19 15:58:04,800 - trainer - INFO -     AA             : 0.8290339708328247
+2026-04-19 15:58:04,800 - trainer - INFO -     val_loss       : 0.704891699552536
+2026-04-19 15:58:04,801 - trainer - INFO -     val_OA         : 0.8294642567634583
+2026-04-19 15:58:04,802 - trainer - INFO -     val_AA         : 0.8309227228164673
+2026-04-19 15:58:04,983 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch28.pth ...
+2026-04-19 15:59:20,080 - trainer - INFO -     epoch          : 29
+2026-04-19 15:59:20,081 - trainer - INFO -     loss           : 0.7106278825551271
+2026-04-19 15:59:20,082 - trainer - INFO -     OA             : 0.817187488079071
+2026-04-19 15:59:20,082 - trainer - INFO -     AA             : 0.8161148428916931
+2026-04-19 15:59:20,083 - trainer - INFO -     val_loss       : 0.6064437597990036
+2026-04-19 15:59:20,084 - trainer - INFO -     val_OA         : 0.8522321581840515
+2026-04-19 15:59:20,084 - trainer - INFO -     val_AA         : 0.8535863161087036
+2026-04-19 15:59:20,267 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch29.pth ...
+2026-04-19 15:59:20,438 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-19 16:00:37,999 - trainer - INFO -     epoch          : 30
+2026-04-19 16:00:38,000 - trainer - INFO -     loss           : 0.7123824715614319
+2026-04-19 16:00:38,000 - trainer - INFO -     OA             : 0.8218750357627869
+2026-04-19 16:00:38,001 - trainer - INFO -     AA             : 0.8242688179016113
+2026-04-19 16:00:38,002 - trainer - INFO -     val_loss       : 0.8414425522089004
+2026-04-19 16:00:38,002 - trainer - INFO -     val_OA         : 0.770089328289032
+2026-04-19 16:00:38,003 - trainer - INFO -     val_AA         : 0.7650297284126282
+2026-04-19 16:00:38,181 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch30.pth ...
+2026-04-19 16:01:47,530 - trainer - INFO -     epoch          : 31
+2026-04-19 16:01:47,531 - trainer - INFO -     loss           : 0.7427358239889145
+2026-04-19 16:01:47,532 - trainer - INFO -     OA             : 0.79296875
+2026-04-19 16:01:47,532 - trainer - INFO -     AA             : 0.7921180725097656
+2026-04-19 16:01:47,533 - trainer - INFO -     val_loss       : 0.6113548547029495
+2026-04-19 16:01:47,534 - trainer - INFO -     val_OA         : 0.8616071939468384
+2026-04-19 16:01:47,534 - trainer - INFO -     val_AA         : 0.862579345703125
+2026-04-19 16:01:47,712 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch31.pth ...
+2026-04-19 16:02:51,443 - trainer - INFO -     epoch          : 32
+2026-04-19 16:02:51,444 - trainer - INFO -     loss           : 0.6900740783661604
+2026-04-19 16:02:51,445 - trainer - INFO -     OA             : 0.8375000357627869
+2026-04-19 16:02:51,445 - trainer - INFO -     AA             : 0.8367323875427246
+2026-04-19 16:02:51,446 - trainer - INFO -     val_loss       : 0.6203242808580398
+2026-04-19 16:02:51,446 - trainer - INFO -     val_OA         : 0.8705357909202576
+2026-04-19 16:02:51,447 - trainer - INFO -     val_AA         : 0.8606845140457153
+2026-04-19 16:02:51,627 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch32.pth ...
+2026-04-19 16:04:09,242 - trainer - INFO -     epoch          : 33
+2026-04-19 16:04:09,243 - trainer - INFO -     loss           : 0.6955369956791401
+2026-04-19 16:04:09,243 - trainer - INFO -     OA             : 0.828906238079071
+2026-04-19 16:04:09,244 - trainer - INFO -     AA             : 0.8188379406929016
+2026-04-19 16:04:09,245 - trainer - INFO -     val_loss       : 0.6512917459011078
+2026-04-19 16:04:09,245 - trainer - INFO -     val_OA         : 0.8366071581840515
+2026-04-19 16:04:09,246 - trainer - INFO -     val_AA         : 0.8193451762199402
+2026-04-19 16:04:09,439 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch33.pth ...
+2026-04-19 16:05:26,377 - trainer - INFO -     epoch          : 34
+2026-04-19 16:05:26,377 - trainer - INFO -     loss           : 0.6897233605384827
+2026-04-19 16:05:26,378 - trainer - INFO -     OA             : 0.831250011920929
+2026-04-19 16:05:26,379 - trainer - INFO -     AA             : 0.8368587493896484
+2026-04-19 16:05:26,379 - trainer - INFO -     val_loss       : 0.7383656486868858
+2026-04-19 16:05:26,380 - trainer - INFO -     val_OA         : 0.8026785850524902
+2026-04-19 16:05:26,381 - trainer - INFO -     val_AA         : 0.7973511815071106
+2026-04-19 16:05:26,562 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch34.pth ...
+2026-04-19 16:06:43,068 - trainer - INFO -     epoch          : 35
+2026-04-19 16:06:43,069 - trainer - INFO -     loss           : 0.6942500200122594
+2026-04-19 16:06:43,070 - trainer - INFO -     OA             : 0.8382812738418579
+2026-04-19 16:06:43,070 - trainer - INFO -     AA             : 0.8401562571525574
+2026-04-19 16:06:43,071 - trainer - INFO -     val_loss       : 0.6054186657071113
+2026-04-19 16:06:43,072 - trainer - INFO -     val_OA         : 0.8808035850524902
+2026-04-19 16:06:43,072 - trainer - INFO -     val_AA         : 0.8671875
+2026-04-19 16:06:43,256 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch35.pth ...
+2026-04-19 16:06:43,430 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-19 16:07:38,292 - trainer - INFO -     epoch          : 36
+2026-04-19 16:07:38,292 - trainer - INFO -     loss           : 0.665429075434804
+2026-04-19 16:07:38,293 - trainer - INFO -     OA             : 0.840624988079071
+2026-04-19 16:07:38,294 - trainer - INFO -     AA             : 0.8219208717346191
+2026-04-19 16:07:38,294 - trainer - INFO -     val_loss       : 0.560776898264885
+2026-04-19 16:07:38,295 - trainer - INFO -     val_OA         : 0.9000000357627869
+2026-04-19 16:07:38,295 - trainer - INFO -     val_AA         : 0.8836904764175415
+2026-04-19 16:07:38,477 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch36.pth ...
+2026-04-19 16:07:38,970 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-19 16:08:55,819 - trainer - INFO -     epoch          : 37
+2026-04-19 16:08:55,819 - trainer - INFO -     loss           : 0.6812134895473718
+2026-04-19 16:08:55,820 - trainer - INFO -     OA             : 0.83203125
+2026-04-19 16:08:55,821 - trainer - INFO -     AA             : 0.8313466310501099
+2026-04-19 16:08:55,821 - trainer - INFO -     val_loss       : 0.6275101408362389
+2026-04-19 16:08:55,822 - trainer - INFO -     val_OA         : 0.8325892686843872
+2026-04-19 16:08:55,823 - trainer - INFO -     val_AA         : 0.8333631753921509
+2026-04-19 16:08:56,007 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch37.pth ...
+2026-04-19 16:09:50,591 - trainer - INFO -     epoch          : 38
+2026-04-19 16:09:50,591 - trainer - INFO -     loss           : 0.6729930981993675
+2026-04-19 16:09:50,592 - trainer - INFO -     OA             : 0.8414062857627869
+2026-04-19 16:09:50,593 - trainer - INFO -     AA             : 0.8233196139335632
+2026-04-19 16:09:50,593 - trainer - INFO -     val_loss       : 0.5928115323185921
+2026-04-19 16:09:50,594 - trainer - INFO -     val_OA         : 0.878125011920929
+2026-04-19 16:09:50,595 - trainer - INFO -     val_AA         : 0.8840376734733582
+2026-04-19 16:09:50,784 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch38.pth ...
+2026-04-19 16:10:45,755 - trainer - INFO -     epoch          : 39
+2026-04-19 16:10:45,756 - trainer - INFO -     loss           : 0.6564286410808563
+2026-04-19 16:10:45,756 - trainer - INFO -     OA             : 0.8570312857627869
+2026-04-19 16:10:45,757 - trainer - INFO -     AA             : 0.8488344550132751
+2026-04-19 16:10:45,757 - trainer - INFO -     val_loss       : 0.552141347527504
+2026-04-19 16:10:45,758 - trainer - INFO -     val_OA         : 0.903124988079071
+2026-04-19 16:10:45,759 - trainer - INFO -     val_AA         : 0.8777481317520142
+2026-04-19 16:10:45,943 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch39.pth ...
+2026-04-19 16:10:46,119 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-19 16:11:51,146 - trainer - INFO -     epoch          : 40
+2026-04-19 16:11:51,147 - trainer - INFO -     loss           : 0.6586780086159706
+2026-04-19 16:11:51,148 - trainer - INFO -     OA             : 0.8492187857627869
+2026-04-19 16:11:51,148 - trainer - INFO -     AA             : 0.8505228161811829
+2026-04-19 16:11:51,149 - trainer - INFO -     val_loss       : 0.5582586273550987
+2026-04-19 16:11:51,150 - trainer - INFO -     val_OA         : 0.8919642567634583
+2026-04-19 16:11:51,150 - trainer - INFO -     val_AA         : 0.8837550282478333
+2026-04-19 16:11:51,330 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch40.pth ...
+2026-04-19 16:13:19,385 - trainer - INFO -     epoch          : 41
+2026-04-19 16:13:19,386 - trainer - INFO -     loss           : 0.6368718259036541
+2026-04-19 16:13:19,387 - trainer - INFO -     OA             : 0.8726562857627869
+2026-04-19 16:13:19,388 - trainer - INFO -     AA             : 0.8746119737625122
+2026-04-19 16:13:19,388 - trainer - INFO -     val_loss       : 0.6181893929839134
+2026-04-19 16:13:19,389 - trainer - INFO -     val_OA         : 0.8616071939468384
+2026-04-19 16:13:19,390 - trainer - INFO -     val_AA         : 0.8784226775169373
+2026-04-19 16:13:19,572 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch41.pth ...
+2026-04-19 16:14:36,458 - trainer - INFO -     epoch          : 42
+2026-04-19 16:14:36,458 - trainer - INFO -     loss           : 0.6426787462085486
+2026-04-19 16:14:36,459 - trainer - INFO -     OA             : 0.848437488079071
+2026-04-19 16:14:36,460 - trainer - INFO -     AA             : 0.8462660908699036
+2026-04-19 16:14:36,460 - trainer - INFO -     val_loss       : 0.5764705806970596
+2026-04-19 16:14:36,461 - trainer - INFO -     val_OA         : 0.8897321820259094
+2026-04-19 16:14:36,462 - trainer - INFO -     val_AA         : 0.8751339316368103
+2026-04-19 16:14:36,642 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch42.pth ...
+2026-04-19 16:16:03,691 - trainer - INFO -     epoch          : 43
+2026-04-19 16:16:03,692 - trainer - INFO -     loss           : 0.6232010800391435
+2026-04-19 16:16:03,693 - trainer - INFO -     OA             : 0.8773437738418579
+2026-04-19 16:16:03,693 - trainer - INFO -     AA             : 0.8682243227958679
+2026-04-19 16:16:03,694 - trainer - INFO -     val_loss       : 0.5448577404022217
+2026-04-19 16:16:03,695 - trainer - INFO -     val_OA         : 0.8991071581840515
+2026-04-19 16:16:03,695 - trainer - INFO -     val_AA         : 0.913609504699707
+2026-04-19 16:16:03,877 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch43.pth ...
+2026-04-19 16:16:04,055 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-19 16:17:09,523 - trainer - INFO -     epoch          : 44
+2026-04-19 16:17:09,523 - trainer - INFO -     loss           : 0.6766202945262194
+2026-04-19 16:17:09,524 - trainer - INFO -     OA             : 0.8421875238418579
+2026-04-19 16:17:09,525 - trainer - INFO -     AA             : 0.8319817781448364
+2026-04-19 16:17:09,525 - trainer - INFO -     val_loss       : 0.5655023798346519
+2026-04-19 16:17:09,526 - trainer - INFO -     val_OA         : 0.8901786208152771
+2026-04-19 16:17:09,527 - trainer - INFO -     val_AA         : 0.8919642567634583
+2026-04-19 16:17:09,706 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch44.pth ...
+2026-04-19 16:18:10,959 - trainer - INFO -     epoch          : 45
+2026-04-19 16:18:10,959 - trainer - INFO -     loss           : 0.6432370103895664
+2026-04-19 16:18:10,960 - trainer - INFO -     OA             : 0.856249988079071
+2026-04-19 16:18:10,961 - trainer - INFO -     AA             : 0.8506685495376587
+2026-04-19 16:18:10,961 - trainer - INFO -     val_loss       : 0.5655041396617889
+2026-04-19 16:18:10,962 - trainer - INFO -     val_OA         : 0.8843750357627869
+2026-04-19 16:18:10,963 - trainer - INFO -     val_AA         : 0.8914285898208618
+2026-04-19 16:18:11,143 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch45.pth ...
+2026-04-19 16:19:32,351 - trainer - INFO -     epoch          : 46
+2026-04-19 16:19:32,352 - trainer - INFO -     loss           : 0.6190031658858061
+2026-04-19 16:19:32,352 - trainer - INFO -     OA             : 0.8695312738418579
+2026-04-19 16:19:32,353 - trainer - INFO -     AA             : 0.8680047988891602
+2026-04-19 16:19:32,354 - trainer - INFO -     val_loss       : 0.5360354036092758
+2026-04-19 16:19:32,354 - trainer - INFO -     val_OA         : 0.8933035731315613
+2026-04-19 16:19:32,355 - trainer - INFO -     val_AA         : 0.8942263722419739
+2026-04-19 16:19:32,535 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch46.pth ...
+2026-04-19 16:19:32,708 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-19 16:21:02,425 - trainer - INFO -     epoch          : 47
+2026-04-19 16:21:02,426 - trainer - INFO -     loss           : 0.611350442096591
+2026-04-19 16:21:02,427 - trainer - INFO -     OA             : 0.8726562857627869
+2026-04-19 16:21:02,427 - trainer - INFO -     AA             : 0.8633047342300415
+2026-04-19 16:21:02,428 - trainer - INFO -     val_loss       : 0.596971333026886
+2026-04-19 16:21:02,429 - trainer - INFO -     val_OA         : 0.8620535731315613
+2026-04-19 16:21:02,429 - trainer - INFO -     val_AA         : 0.8521626591682434
+2026-04-19 16:21:02,609 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch47.pth ...
+2026-04-19 16:22:21,077 - trainer - INFO -     epoch          : 48
+2026-04-19 16:22:21,077 - trainer - INFO -     loss           : 0.6375408373773098
+2026-04-19 16:22:21,078 - trainer - INFO -     OA             : 0.860156238079071
+2026-04-19 16:22:21,079 - trainer - INFO -     AA             : 0.846763551235199
+2026-04-19 16:22:21,079 - trainer - INFO -     val_loss       : 0.5731102332472802
+2026-04-19 16:22:21,080 - trainer - INFO -     val_OA         : 0.8647322058677673
+2026-04-19 16:22:21,081 - trainer - INFO -     val_AA         : 0.8552529215812683
+2026-04-19 16:22:21,262 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch48.pth ...
+2026-04-19 16:23:17,007 - trainer - INFO -     epoch          : 49
+2026-04-19 16:23:17,007 - trainer - INFO -     loss           : 0.613201230019331
+2026-04-19 16:23:17,008 - trainer - INFO -     OA             : 0.875781238079071
+2026-04-19 16:23:17,009 - trainer - INFO -     AA             : 0.8750336766242981
+2026-04-19 16:23:17,009 - trainer - INFO -     val_loss       : 0.5034942403435707
+2026-04-19 16:23:17,010 - trainer - INFO -     val_OA         : 0.9433035850524902
+2026-04-19 16:23:17,011 - trainer - INFO -     val_AA         : 0.9366369247436523
+2026-04-19 16:23:17,190 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch49.pth ...
+2026-04-19 16:23:17,362 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-19 16:24:13,224 - trainer - INFO -     epoch          : 50
+2026-04-19 16:24:13,224 - trainer - INFO -     loss           : 0.6005467224866152
+2026-04-19 16:24:13,225 - trainer - INFO -     OA             : 0.8851562738418579
+2026-04-19 16:24:13,226 - trainer - INFO -     AA             : 0.8822682499885559
+2026-04-19 16:24:13,227 - trainer - INFO -     val_loss       : 0.6207128405570984
+2026-04-19 16:24:13,227 - trainer - INFO -     val_OA         : 0.8772321939468384
+2026-04-19 16:24:13,228 - trainer - INFO -     val_AA         : 0.8711606860160828
+2026-04-19 16:24:13,408 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch50.pth ...
+2026-04-19 16:25:39,947 - trainer - INFO -     epoch          : 51
+2026-04-19 16:25:39,948 - trainer - INFO -     loss           : 0.6240766193717718
+2026-04-19 16:25:39,948 - trainer - INFO -     OA             : 0.875
+2026-04-19 16:25:39,949 - trainer - INFO -     AA             : 0.8642038702964783
+2026-04-19 16:25:39,950 - trainer - INFO -     val_loss       : 0.5347340553998947
+2026-04-19 16:25:39,951 - trainer - INFO -     val_OA         : 0.9089285731315613
+2026-04-19 16:25:39,951 - trainer - INFO -     val_AA         : 0.9179612994194031
+2026-04-19 16:25:40,129 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch51.pth ...
+2026-04-19 16:26:58,565 - trainer - INFO -     epoch          : 52
+2026-04-19 16:26:58,566 - trainer - INFO -     loss           : 0.5944118916988372
+2026-04-19 16:26:58,567 - trainer - INFO -     OA             : 0.8843750357627869
+2026-04-19 16:26:58,567 - trainer - INFO -     AA             : 0.8679662942886353
+2026-04-19 16:26:58,568 - trainer - INFO -     val_loss       : 0.5148376792669296
+2026-04-19 16:26:58,569 - trainer - INFO -     val_OA         : 0.934374988079071
+2026-04-19 16:26:58,569 - trainer - INFO -     val_AA         : 0.9454365968704224
+2026-04-19 16:26:58,751 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch52.pth ...
+2026-04-19 16:28:14,173 - trainer - INFO -     epoch          : 53
+2026-04-19 16:28:14,174 - trainer - INFO -     loss           : 0.6120757479220629
+2026-04-19 16:28:14,174 - trainer - INFO -     OA             : 0.866406261920929
+2026-04-19 16:28:14,175 - trainer - INFO -     AA             : 0.8644979596138
+2026-04-19 16:28:14,175 - trainer - INFO -     val_loss       : 0.5835642084479332
+2026-04-19 16:28:14,176 - trainer - INFO -     val_OA         : 0.8839285969734192
+2026-04-19 16:28:14,177 - trainer - INFO -     val_AA         : 0.863422691822052
+2026-04-19 16:28:14,355 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch53.pth ...
+2026-04-19 16:29:14,146 - trainer - INFO -     epoch          : 54
+2026-04-19 16:29:14,146 - trainer - INFO -     loss           : 0.6181052248924971
+2026-04-19 16:29:14,147 - trainer - INFO -     OA             : 0.866406261920929
+2026-04-19 16:29:14,148 - trainer - INFO -     AA             : 0.8587798476219177
+2026-04-19 16:29:14,149 - trainer - INFO -     val_loss       : 0.5517685249447822
+2026-04-19 16:29:14,150 - trainer - INFO -     val_OA         : 0.8933035731315613
+2026-04-19 16:29:14,150 - trainer - INFO -     val_AA         : 0.8979315161705017
+2026-04-19 16:29:14,335 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch54.pth ...
+2026-04-19 16:30:51,622 - trainer - INFO -     epoch          : 55
+2026-04-19 16:30:51,623 - trainer - INFO -     loss           : 0.6118639301508665
+2026-04-19 16:30:51,624 - trainer - INFO -     OA             : 0.879687488079071
+2026-04-19 16:30:51,625 - trainer - INFO -     AA             : 0.8799700736999512
+2026-04-19 16:30:51,625 - trainer - INFO -     val_loss       : 0.5581503078341484
+2026-04-19 16:30:51,626 - trainer - INFO -     val_OA         : 0.8964285850524902
+2026-04-19 16:30:51,627 - trainer - INFO -     val_AA         : 0.887499988079071
+2026-04-19 16:30:52,030 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch55.pth ...
+2026-04-19 16:32:17,705 - trainer - INFO -     epoch          : 56
+2026-04-19 16:32:17,706 - trainer - INFO -     loss           : 0.5919668115675449
+2026-04-19 16:32:17,706 - trainer - INFO -     OA             : 0.890625
+2026-04-19 16:32:17,707 - trainer - INFO -     AA             : 0.8880408406257629
+2026-04-19 16:32:17,708 - trainer - INFO -     val_loss       : 0.5080146178603172
+2026-04-19 16:32:17,709 - trainer - INFO -     val_OA         : 0.9183036088943481
+2026-04-19 16:32:17,709 - trainer - INFO -     val_AA         : 0.9066368937492371
+2026-04-19 16:32:17,895 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch56.pth ...
+2026-04-19 16:33:50,455 - trainer - INFO -     epoch          : 57
+2026-04-19 16:33:50,456 - trainer - INFO -     loss           : 0.6024420734494924
+2026-04-19 16:33:50,457 - trainer - INFO -     OA             : 0.88671875
+2026-04-19 16:33:50,458 - trainer - INFO -     AA             : 0.8780989050865173
+2026-04-19 16:33:50,458 - trainer - INFO -     val_loss       : 0.5168074697256089
+2026-04-19 16:33:50,459 - trainer - INFO -     val_OA         : 0.9120535850524902
+2026-04-19 16:33:50,460 - trainer - INFO -     val_AA         : 0.9126785397529602
+2026-04-19 16:33:50,644 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch57.pth ...
+2026-04-19 16:35:14,470 - trainer - INFO -     epoch          : 58
+2026-04-19 16:35:14,470 - trainer - INFO -     loss           : 0.590249041467905
+2026-04-19 16:35:14,471 - trainer - INFO -     OA             : 0.8968750238418579
+2026-04-19 16:35:14,472 - trainer - INFO -     AA             : 0.8989856839179993
+2026-04-19 16:35:14,472 - trainer - INFO -     val_loss       : 0.5634765803813935
+2026-04-19 16:35:14,473 - trainer - INFO -     val_OA         : 0.8933035731315613
+2026-04-19 16:35:14,473 - trainer - INFO -     val_AA         : 0.8826190233230591
+2026-04-19 16:35:14,653 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch58.pth ...
+2026-04-19 16:36:42,382 - trainer - INFO -     epoch          : 59
+2026-04-19 16:36:42,383 - trainer - INFO -     loss           : 0.5589062854647636
+2026-04-19 16:36:42,384 - trainer - INFO -     OA             : 0.90625
+2026-04-19 16:36:42,385 - trainer - INFO -     AA             : 0.8964807391166687
+2026-04-19 16:36:42,385 - trainer - INFO -     val_loss       : 0.500259368121624
+2026-04-19 16:36:42,386 - trainer - INFO -     val_OA         : 0.9281250238418579
+2026-04-19 16:36:42,387 - trainer - INFO -     val_AA         : 0.9297916293144226
+2026-04-19 16:36:43,091 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch59.pth ...
+2026-04-19 16:36:44,932 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-19 16:38:20,124 - trainer - INFO -     epoch          : 60
+2026-04-19 16:38:20,125 - trainer - INFO -     loss           : 0.567358934506774
+2026-04-19 16:38:20,126 - trainer - INFO -     OA             : 0.9007812738418579
+2026-04-19 16:38:20,126 - trainer - INFO -     AA             : 0.8981397747993469
+2026-04-19 16:38:20,127 - trainer - INFO -     val_loss       : 0.49124870002269744
+2026-04-19 16:38:20,128 - trainer - INFO -     val_OA         : 0.9308035969734192
+2026-04-19 16:38:20,128 - trainer - INFO -     val_AA         : 0.932187557220459
+2026-04-19 16:38:20,309 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch60.pth ...
+2026-04-19 16:38:20,481 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-19 16:39:50,491 - trainer - INFO -     epoch          : 61
+2026-04-19 16:39:50,492 - trainer - INFO -     loss           : 0.5788075655698777
+2026-04-19 16:39:50,493 - trainer - INFO -     OA             : 0.8929687738418579
+2026-04-19 16:39:50,493 - trainer - INFO -     AA             : 0.8880742192268372
+2026-04-19 16:39:50,494 - trainer - INFO -     val_loss       : 0.5045224919915199
+2026-04-19 16:39:50,495 - trainer - INFO -     val_OA         : 0.9214286208152771
+2026-04-19 16:39:50,495 - trainer - INFO -     val_AA         : 0.9064087867736816
+2026-04-19 16:39:50,675 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch61.pth ...
+2026-04-19 16:41:24,495 - trainer - INFO -     epoch          : 62
+2026-04-19 16:41:24,495 - trainer - INFO -     loss           : 0.561356158182025
+2026-04-19 16:41:24,496 - trainer - INFO -     OA             : 0.9000000357627869
+2026-04-19 16:41:24,497 - trainer - INFO -     AA             : 0.8971976637840271
+2026-04-19 16:41:24,497 - trainer - INFO -     val_loss       : 0.5253809198737145
+2026-04-19 16:41:24,498 - trainer - INFO -     val_OA         : 0.9058036208152771
+2026-04-19 16:41:24,498 - trainer - INFO -     val_AA         : 0.8947321772575378
+2026-04-19 16:41:24,676 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch62.pth ...
+2026-04-19 16:42:49,585 - trainer - INFO -     epoch          : 63
+2026-04-19 16:42:49,586 - trainer - INFO -     loss           : 0.5703007239848376
+2026-04-19 16:42:49,586 - trainer - INFO -     OA             : 0.9046875238418579
+2026-04-19 16:42:49,587 - trainer - INFO -     AA             : 0.9037648439407349
+2026-04-19 16:42:49,588 - trainer - INFO -     val_loss       : 0.5631200715899467
+2026-04-19 16:42:49,588 - trainer - INFO -     val_OA         : 0.8928571939468384
+2026-04-19 16:42:49,589 - trainer - INFO -     val_AA         : 0.9022470712661743
+2026-04-19 16:42:49,768 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch63.pth ...
+2026-04-19 16:44:00,988 - trainer - INFO -     epoch          : 64
+2026-04-19 16:44:00,989 - trainer - INFO -     loss           : 0.5695884618908167
+2026-04-19 16:44:00,989 - trainer - INFO -     OA             : 0.890625
+2026-04-19 16:44:00,990 - trainer - INFO -     AA             : 0.8880268931388855
+2026-04-19 16:44:00,991 - trainer - INFO -     val_loss       : 0.5503756448626518
+2026-04-19 16:44:00,991 - trainer - INFO -     val_OA         : 0.8866071701049805
+2026-04-19 16:44:00,992 - trainer - INFO -     val_AA         : 0.889821469783783
+2026-04-19 16:44:01,182 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch64.pth ...
+2026-04-19 16:45:12,509 - trainer - INFO -     epoch          : 65
+2026-04-19 16:45:12,510 - trainer - INFO -     loss           : 0.5563968617469073
+2026-04-19 16:45:12,510 - trainer - INFO -     OA             : 0.910937488079071
+2026-04-19 16:45:12,511 - trainer - INFO -     AA             : 0.9089332818984985
+2026-04-19 16:45:12,512 - trainer - INFO -     val_loss       : 0.5443675220012665
+2026-04-19 16:45:12,512 - trainer - INFO -     val_OA         : 0.9049107432365417
+2026-04-19 16:45:12,513 - trainer - INFO -     val_AA         : 0.8890029191970825
+2026-04-19 16:45:13,112 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch65.pth ...
+2026-04-19 16:46:13,135 - trainer - INFO -     epoch          : 66
+2026-04-19 16:46:13,135 - trainer - INFO -     loss           : 0.5660142593085766
+2026-04-19 16:46:13,136 - trainer - INFO -     OA             : 0.8984375
+2026-04-19 16:46:13,137 - trainer - INFO -     AA             : 0.8929916620254517
+2026-04-19 16:46:13,137 - trainer - INFO -     val_loss       : 0.5031885668635369
+2026-04-19 16:46:13,138 - trainer - INFO -     val_OA         : 0.9147321581840515
+2026-04-19 16:46:13,139 - trainer - INFO -     val_AA         : 0.895089328289032
+2026-04-19 16:46:13,320 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch66.pth ...
+2026-04-19 16:47:08,196 - trainer - INFO -     epoch          : 67
+2026-04-19 16:47:08,197 - trainer - INFO -     loss           : 0.5390121024101973
+2026-04-19 16:47:08,198 - trainer - INFO -     OA             : 0.9117187857627869
+2026-04-19 16:47:08,198 - trainer - INFO -     AA             : 0.9079930186271667
+2026-04-19 16:47:08,199 - trainer - INFO -     val_loss       : 0.503252574801445
+2026-04-19 16:47:08,199 - trainer - INFO -     val_OA         : 0.9214286208152771
+2026-04-19 16:47:08,200 - trainer - INFO -     val_AA         : 0.9242262244224548
+2026-04-19 16:47:08,380 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch67.pth ...
+2026-04-19 16:48:16,527 - trainer - INFO -     epoch          : 68
+2026-04-19 16:48:16,528 - trainer - INFO -     loss           : 0.5372746545821429
+2026-04-19 16:48:16,529 - trainer - INFO -     OA             : 0.9195312857627869
+2026-04-19 16:48:16,529 - trainer - INFO -     AA             : 0.9162686467170715
+2026-04-19 16:48:16,530 - trainer - INFO -     val_loss       : 0.4971534043550491
+2026-04-19 16:48:16,530 - trainer - INFO -     val_OA         : 0.9334821701049805
+2026-04-19 16:48:16,531 - trainer - INFO -     val_AA         : 0.9453870058059692
+2026-04-19 16:48:16,713 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch68.pth ...
+2026-04-19 16:49:40,920 - trainer - INFO -     epoch          : 69
+2026-04-19 16:49:40,920 - trainer - INFO -     loss           : 0.5322285044938326
+2026-04-19 16:49:40,921 - trainer - INFO -     OA             : 0.922656238079071
+2026-04-19 16:49:40,922 - trainer - INFO -     AA             : 0.9187871217727661
+2026-04-19 16:49:40,922 - trainer - INFO -     val_loss       : 0.5079668834805489
+2026-04-19 16:49:40,923 - trainer - INFO -     val_OA         : 0.921875
+2026-04-19 16:49:40,923 - trainer - INFO -     val_AA         : 0.9292261004447937
+2026-04-19 16:49:41,094 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch69.pth ...
+2026-04-19 16:50:40,373 - trainer - INFO -     epoch          : 70
+2026-04-19 16:50:40,374 - trainer - INFO -     loss           : 0.5235406562685967
+2026-04-19 16:50:40,375 - trainer - INFO -     OA             : 0.938281238079071
+2026-04-19 16:50:40,376 - trainer - INFO -     AA             : 0.9416946768760681
+2026-04-19 16:50:40,376 - trainer - INFO -     val_loss       : 0.5238364815711976
+2026-04-19 16:50:40,377 - trainer - INFO -     val_OA         : 0.9147321581840515
+2026-04-19 16:50:40,377 - trainer - INFO -     val_AA         : 0.9165475964546204
+2026-04-19 16:50:40,564 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch70.pth ...
+2026-04-19 16:52:03,665 - trainer - INFO -     epoch          : 71
+2026-04-19 16:52:03,665 - trainer - INFO -     loss           : 0.556346719712019
+2026-04-19 16:52:03,666 - trainer - INFO -     OA             : 0.91015625
+2026-04-19 16:52:03,667 - trainer - INFO -     AA             : 0.9137301445007324
+2026-04-19 16:52:03,667 - trainer - INFO -     val_loss       : 0.5520866587758064
+2026-04-19 16:52:03,668 - trainer - INFO -     val_OA         : 0.8866071701049805
+2026-04-19 16:52:03,669 - trainer - INFO -     val_AA         : 0.8787798285484314
+2026-04-19 16:52:03,853 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch71.pth ...
+2026-04-19 16:53:20,947 - trainer - INFO -     epoch          : 72
+2026-04-19 16:53:20,948 - trainer - INFO -     loss           : 0.534107805415988
+2026-04-19 16:53:20,949 - trainer - INFO -     OA             : 0.917187511920929
+2026-04-19 16:53:20,949 - trainer - INFO -     AA             : 0.9072842597961426
+2026-04-19 16:53:20,950 - trainer - INFO -     val_loss       : 0.5172323778271675
+2026-04-19 16:53:20,950 - trainer - INFO -     val_OA         : 0.9053571820259094
+2026-04-19 16:53:20,951 - trainer - INFO -     val_AA         : 0.8975445628166199
+2026-04-19 16:53:21,135 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch72.pth ...
+2026-04-19 16:54:17,076 - trainer - INFO -     epoch          : 73
+2026-04-19 16:54:17,077 - trainer - INFO -     loss           : 0.5532723922282458
+2026-04-19 16:54:17,078 - trainer - INFO -     OA             : 0.903124988079071
+2026-04-19 16:54:17,079 - trainer - INFO -     AA             : 0.9036495089530945
+2026-04-19 16:54:17,079 - trainer - INFO -     val_loss       : 0.5225071355700492
+2026-04-19 16:54:17,080 - trainer - INFO -     val_OA         : 0.918749988079071
+2026-04-19 16:54:17,081 - trainer - INFO -     val_AA         : 0.9079761505126953
+2026-04-19 16:54:17,998 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch73.pth ...
+2026-04-19 16:55:12,949 - trainer - INFO -     epoch          : 74
+2026-04-19 16:55:12,950 - trainer - INFO -     loss           : 0.5243893425911665
+2026-04-19 16:55:12,951 - trainer - INFO -     OA             : 0.9273437857627869
+2026-04-19 16:55:12,951 - trainer - INFO -     AA             : 0.9156399965286255
+2026-04-19 16:55:12,952 - trainer - INFO -     val_loss       : 0.47250610291957856
+2026-04-19 16:55:12,953 - trainer - INFO -     val_OA         : 0.9437500238418579
+2026-04-19 16:55:12,953 - trainer - INFO -     val_AA         : 0.942976176738739
+2026-04-19 16:55:13,133 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch74.pth ...
+2026-04-19 16:55:13,303 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-19 16:56:13,704 - trainer - INFO -     epoch          : 75
+2026-04-19 16:56:13,705 - trainer - INFO -     loss           : 0.5294220313429833
+2026-04-19 16:56:13,706 - trainer - INFO -     OA             : 0.917187511920929
+2026-04-19 16:56:13,706 - trainer - INFO -     AA             : 0.9210602641105652
+2026-04-19 16:56:13,707 - trainer - INFO -     val_loss       : 0.4584265351295471
+2026-04-19 16:56:13,707 - trainer - INFO -     val_OA         : 0.9437500238418579
+2026-04-19 16:56:13,708 - trainer - INFO -     val_AA         : 0.9375
+2026-04-19 16:56:13,887 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch75.pth ...
+2026-04-19 16:56:14,062 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-19 16:57:52,938 - trainer - INFO -     epoch          : 76
+2026-04-19 16:57:52,939 - trainer - INFO -     loss           : 0.5312898814678192
+2026-04-19 16:57:52,939 - trainer - INFO -     OA             : 0.91796875
+2026-04-19 16:57:52,940 - trainer - INFO -     AA             : 0.9113902449607849
+2026-04-19 16:57:52,941 - trainer - INFO -     val_loss       : 0.535164438188076
+2026-04-19 16:57:52,941 - trainer - INFO -     val_OA         : 0.8959822058677673
+2026-04-19 16:57:52,942 - trainer - INFO -     val_AA         : 0.8908631205558777
+2026-04-19 16:57:53,124 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch76.pth ...
+2026-04-19 16:59:12,227 - trainer - INFO -     epoch          : 77
+2026-04-19 16:59:12,227 - trainer - INFO -     loss           : 0.5296308875083924
+2026-04-19 16:59:12,228 - trainer - INFO -     OA             : 0.918749988079071
+2026-04-19 16:59:12,229 - trainer - INFO -     AA             : 0.9179698824882507
+2026-04-19 16:59:12,229 - trainer - INFO -     val_loss       : 0.4838968083262444
+2026-04-19 16:59:12,230 - trainer - INFO -     val_OA         : 0.9276785850524902
+2026-04-19 16:59:12,230 - trainer - INFO -     val_AA         : 0.922805905342102
+2026-04-19 16:59:12,410 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch77.pth ...
+2026-04-19 17:00:13,465 - trainer - INFO -     epoch          : 78
+2026-04-19 17:00:13,466 - trainer - INFO -     loss           : 0.5065250307321548
+2026-04-19 17:00:13,466 - trainer - INFO -     OA             : 0.928906261920929
+2026-04-19 17:00:13,467 - trainer - INFO -     AA             : 0.9280692338943481
+2026-04-19 17:00:13,468 - trainer - INFO -     val_loss       : 0.47363521307706835
+2026-04-19 17:00:13,468 - trainer - INFO -     val_OA         : 0.949999988079071
+2026-04-19 17:00:13,469 - trainer - INFO -     val_AA         : 0.9454166293144226
+2026-04-19 17:00:13,651 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch78.pth ...
+2026-04-19 17:01:14,833 - trainer - INFO -     epoch          : 79
+2026-04-19 17:01:14,834 - trainer - INFO -     loss           : 0.5096221294254064
+2026-04-19 17:01:14,835 - trainer - INFO -     OA             : 0.938281238079071
+2026-04-19 17:01:14,835 - trainer - INFO -     AA             : 0.9362971186637878
+2026-04-19 17:01:14,836 - trainer - INFO -     val_loss       : 0.4747358724474907
+2026-04-19 17:01:14,837 - trainer - INFO -     val_OA         : 0.9375
+2026-04-19 17:01:14,837 - trainer - INFO -     val_AA         : 0.9194494485855103
+2026-04-19 17:01:15,019 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch79.pth ...
+2026-04-19 17:02:34,204 - trainer - INFO -     epoch          : 80
+2026-04-19 17:02:34,205 - trainer - INFO -     loss           : 0.5292315013706684
+2026-04-19 17:02:34,205 - trainer - INFO -     OA             : 0.9195312857627869
+2026-04-19 17:02:34,206 - trainer - INFO -     AA             : 0.9211322069168091
+2026-04-19 17:02:34,207 - trainer - INFO -     val_loss       : 0.458144037425518
+2026-04-19 17:02:34,208 - trainer - INFO -     val_OA         : 0.9558035731315613
+2026-04-19 17:02:34,208 - trainer - INFO -     val_AA         : 0.9543749690055847
+2026-04-19 17:02:34,391 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch80.pth ...
+2026-04-19 17:02:34,566 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-19 17:03:39,317 - trainer - INFO -     epoch          : 81
+2026-04-19 17:03:39,318 - trainer - INFO -     loss           : 0.5244374804198741
+2026-04-19 17:03:39,318 - trainer - INFO -     OA             : 0.921875
+2026-04-19 17:03:39,319 - trainer - INFO -     AA             : 0.9211657643318176
+2026-04-19 17:03:39,320 - trainer - INFO -     val_loss       : 0.46913504898548125
+2026-04-19 17:03:39,320 - trainer - INFO -     val_OA         : 0.940625011920929
+2026-04-19 17:03:39,321 - trainer - INFO -     val_AA         : 0.9436110854148865
+2026-04-19 17:03:39,515 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch81.pth ...
+2026-04-19 17:05:08,929 - trainer - INFO -     epoch          : 82
+2026-04-19 17:05:08,930 - trainer - INFO -     loss           : 0.5112522386014462
+2026-04-19 17:05:08,930 - trainer - INFO -     OA             : 0.9296875
+2026-04-19 17:05:08,931 - trainer - INFO -     AA             : 0.9305619597434998
+2026-04-19 17:05:08,932 - trainer - INFO -     val_loss       : 0.4956983163952827
+2026-04-19 17:05:08,932 - trainer - INFO -     val_OA         : 0.9205357432365417
+2026-04-19 17:05:08,933 - trainer - INFO -     val_AA         : 0.913526713848114
+2026-04-19 17:05:09,116 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch82.pth ...
+2026-04-19 17:06:04,394 - trainer - INFO -     epoch          : 83
+2026-04-19 17:06:04,394 - trainer - INFO -     loss           : 0.5269084714353085
+2026-04-19 17:06:04,395 - trainer - INFO -     OA             : 0.9156250357627869
+2026-04-19 17:06:04,396 - trainer - INFO -     AA             : 0.9138639569282532
+2026-04-19 17:06:04,396 - trainer - INFO -     val_loss       : 0.48054913282394407
+2026-04-19 17:06:04,397 - trainer - INFO -     val_OA         : 0.934374988079071
+2026-04-19 17:06:04,398 - trainer - INFO -     val_AA         : 0.9470386505126953
+2026-04-19 17:06:04,578 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch83.pth ...
+2026-04-19 17:07:02,747 - trainer - INFO -     epoch          : 84
+2026-04-19 17:07:02,747 - trainer - INFO -     loss           : 0.5087071105837822
+2026-04-19 17:07:02,748 - trainer - INFO -     OA             : 0.9312500357627869
+2026-04-19 17:07:02,749 - trainer - INFO -     AA             : 0.92756187915802
+2026-04-19 17:07:02,750 - trainer - INFO -     val_loss       : 0.5078192263841629
+2026-04-19 17:07:02,750 - trainer - INFO -     val_OA         : 0.9147321581840515
+2026-04-19 17:07:02,751 - trainer - INFO -     val_AA         : 0.9152911305427551
+2026-04-19 17:07:04,576 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch84.pth ...
+2026-04-19 17:08:26,152 - trainer - INFO -     epoch          : 85
+2026-04-19 17:08:26,153 - trainer - INFO -     loss           : 0.5004726648330688
+2026-04-19 17:08:26,153 - trainer - INFO -     OA             : 0.9390625357627869
+2026-04-19 17:08:26,154 - trainer - INFO -     AA             : 0.9419531226158142
+2026-04-19 17:08:26,155 - trainer - INFO -     val_loss       : 0.48631350249052047
+2026-04-19 17:08:26,155 - trainer - INFO -     val_OA         : 0.9281250238418579
+2026-04-19 17:08:26,156 - trainer - INFO -     val_AA         : 0.9351488351821899
+2026-04-19 17:08:26,336 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch85.pth ...
+2026-04-19 17:09:56,946 - trainer - INFO -     epoch          : 86
+2026-04-19 17:09:56,946 - trainer - INFO -     loss           : 0.49061114266514777
+2026-04-19 17:09:56,947 - trainer - INFO -     OA             : 0.938281238079071
+2026-04-19 17:09:56,948 - trainer - INFO -     AA             : 0.9359673857688904
+2026-04-19 17:09:56,948 - trainer - INFO -     val_loss       : 0.46655333340168
+2026-04-19 17:09:56,949 - trainer - INFO -     val_OA         : 0.9495536088943481
+2026-04-19 17:09:56,950 - trainer - INFO -     val_AA         : 0.9520387053489685
+2026-04-19 17:09:57,132 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch86.pth ...
+2026-04-19 17:11:25,189 - trainer - INFO -     epoch          : 87
+2026-04-19 17:11:25,189 - trainer - INFO -     loss           : 0.511352751404047
+2026-04-19 17:11:25,190 - trainer - INFO -     OA             : 0.921093761920929
+2026-04-19 17:11:25,191 - trainer - INFO -     AA             : 0.9229427576065063
+2026-04-19 17:11:25,191 - trainer - INFO -     val_loss       : 0.48498396575450897
+2026-04-19 17:11:25,192 - trainer - INFO -     val_OA         : 0.9312500357627869
+2026-04-19 17:11:25,193 - trainer - INFO -     val_AA         : 0.9126042723655701
+2026-04-19 17:11:25,373 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch87.pth ...
+2026-04-19 17:12:49,326 - trainer - INFO -     epoch          : 88
+2026-04-19 17:12:49,327 - trainer - INFO -     loss           : 0.4948677718639374
+2026-04-19 17:12:49,328 - trainer - INFO -     OA             : 0.94140625
+2026-04-19 17:12:49,328 - trainer - INFO -     AA             : 0.9394394755363464
+2026-04-19 17:12:49,329 - trainer - INFO -     val_loss       : 0.4709889113903046
+2026-04-19 17:12:49,330 - trainer - INFO -     val_OA         : 0.9437500238418579
+2026-04-19 17:12:49,330 - trainer - INFO -     val_AA         : 0.9403273463249207
+2026-04-19 17:12:49,509 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch88.pth ...
+2026-04-19 17:13:47,187 - trainer - INFO -     epoch          : 89
+2026-04-19 17:13:47,187 - trainer - INFO -     loss           : 0.4874125249683857
+2026-04-19 17:13:47,188 - trainer - INFO -     OA             : 0.9429687857627869
+2026-04-19 17:13:47,189 - trainer - INFO -     AA             : 0.9384511113166809
+2026-04-19 17:13:47,189 - trainer - INFO -     val_loss       : 0.45758672803640366
+2026-04-19 17:13:47,190 - trainer - INFO -     val_OA         : 0.940625011920929
+2026-04-19 17:13:47,191 - trainer - INFO -     val_AA         : 0.9418452382087708
+2026-04-19 17:13:47,377 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch89.pth ...
+2026-04-19 17:13:47,550 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-19 17:14:57,588 - trainer - INFO -     epoch          : 90
+2026-04-19 17:14:57,589 - trainer - INFO -     loss           : 0.48756223507225516
+2026-04-19 17:14:57,590 - trainer - INFO -     OA             : 0.94140625
+2026-04-19 17:14:57,591 - trainer - INFO -     AA             : 0.9338380098342896
+2026-04-19 17:14:57,591 - trainer - INFO -     val_loss       : 0.47715856283903124
+2026-04-19 17:14:57,592 - trainer - INFO -     val_OA         : 0.9375
+2026-04-19 17:14:57,593 - trainer - INFO -     val_AA         : 0.9338392615318298
+2026-04-19 17:14:57,779 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch90.pth ...
+2026-04-19 17:15:58,917 - trainer - INFO -     epoch          : 91
+2026-04-19 17:15:58,918 - trainer - INFO -     loss           : 0.4935718387365341
+2026-04-19 17:15:58,919 - trainer - INFO -     OA             : 0.940625011920929
+2026-04-19 17:15:58,919 - trainer - INFO -     AA             : 0.9388505220413208
+2026-04-19 17:15:58,920 - trainer - INFO -     val_loss       : 0.4603001594543457
+2026-04-19 17:15:58,921 - trainer - INFO -     val_OA         : 0.9428572058677673
+2026-04-19 17:15:58,921 - trainer - INFO -     val_AA         : 0.9386458396911621
+2026-04-19 17:15:59,102 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch91.pth ...
+2026-04-19 17:17:17,409 - trainer - INFO -     epoch          : 92
+2026-04-19 17:17:17,410 - trainer - INFO -     loss           : 0.4734212175011635
+2026-04-19 17:17:17,411 - trainer - INFO -     OA             : 0.9585937857627869
+2026-04-19 17:17:17,412 - trainer - INFO -     AA             : 0.9614173769950867
+2026-04-19 17:17:17,413 - trainer - INFO -     val_loss       : 0.4965303599834442
+2026-04-19 17:17:17,414 - trainer - INFO -     val_OA         : 0.9308035969734192
+2026-04-19 17:17:17,415 - trainer - INFO -     val_AA         : 0.9321727156639099
+2026-04-19 17:17:17,614 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch92.pth ...
+2026-04-19 17:18:57,122 - trainer - INFO -     epoch          : 93
+2026-04-19 17:18:57,122 - trainer - INFO -     loss           : 0.47082316838204863
+2026-04-19 17:18:57,123 - trainer - INFO -     OA             : 0.95703125
+2026-04-19 17:18:57,124 - trainer - INFO -     AA             : 0.9527331590652466
+2026-04-19 17:18:57,124 - trainer - INFO -     val_loss       : 0.4847567230463028
+2026-04-19 17:18:57,125 - trainer - INFO -     val_OA         : 0.9437500238418579
+2026-04-19 17:18:57,126 - trainer - INFO -     val_AA         : 0.931770920753479
+2026-04-19 17:18:57,318 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch93.pth ...
+2026-04-19 17:20:06,111 - trainer - INFO -     epoch          : 94
+2026-04-19 17:20:06,111 - trainer - INFO -     loss           : 0.4823941044509411
+2026-04-19 17:20:06,112 - trainer - INFO -     OA             : 0.9468750357627869
+2026-04-19 17:20:06,113 - trainer - INFO -     AA             : 0.9422100186347961
+2026-04-19 17:20:06,113 - trainer - INFO -     val_loss       : 0.47548315972089766
+2026-04-19 17:20:06,114 - trainer - INFO -     val_OA         : 0.9464285969734192
+2026-04-19 17:20:06,115 - trainer - INFO -     val_AA         : 0.9535118937492371
+2026-04-19 17:20:06,303 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch94.pth ...
+2026-04-19 17:21:23,886 - trainer - INFO -     epoch          : 95
+2026-04-19 17:21:23,887 - trainer - INFO -     loss           : 0.46466499119997023
+2026-04-19 17:21:23,888 - trainer - INFO -     OA             : 0.957812488079071
+2026-04-19 17:21:23,888 - trainer - INFO -     AA             : 0.951718807220459
+2026-04-19 17:21:23,889 - trainer - INFO -     val_loss       : 0.48070227205753324
+2026-04-19 17:21:23,890 - trainer - INFO -     val_OA         : 0.9401785731315613
+2026-04-19 17:21:23,890 - trainer - INFO -     val_AA         : 0.939047634601593
+2026-04-19 17:21:24,071 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch95.pth ...
+2026-04-19 17:22:54,377 - trainer - INFO -     epoch          : 96
+2026-04-19 17:22:54,377 - trainer - INFO -     loss           : 0.4948313269764185
+2026-04-19 17:22:54,378 - trainer - INFO -     OA             : 0.9351562857627869
+2026-04-19 17:22:54,378 - trainer - INFO -     AA             : 0.9286296963691711
+2026-04-19 17:22:54,379 - trainer - INFO -     val_loss       : 0.4399637058377266
+2026-04-19 17:22:54,380 - trainer - INFO -     val_OA         : 0.9625000357627869
+2026-04-19 17:22:54,380 - trainer - INFO -     val_AA         : 0.9618750810623169
+2026-04-19 17:22:54,564 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch96.pth ...
+2026-04-19 17:22:54,735 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-19 17:24:48,848 - trainer - INFO -     epoch          : 97
+2026-04-19 17:24:48,849 - trainer - INFO -     loss           : 0.47387464679777624
+2026-04-19 17:24:48,850 - trainer - INFO -     OA             : 0.953125
+2026-04-19 17:24:48,850 - trainer - INFO -     AA             : 0.9535403251647949
+2026-04-19 17:24:48,851 - trainer - INFO -     val_loss       : 0.44942133873701096
+2026-04-19 17:24:48,852 - trainer - INFO -     val_OA         : 0.9584822058677673
+2026-04-19 17:24:48,852 - trainer - INFO -     val_AA         : 0.9478572010993958
+2026-04-19 17:24:49,032 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch97.pth ...
+2026-04-19 17:26:07,913 - trainer - INFO -     epoch          : 98
+2026-04-19 17:26:07,914 - trainer - INFO -     loss           : 0.4795056745409966
+2026-04-19 17:26:07,915 - trainer - INFO -     OA             : 0.953906238079071
+2026-04-19 17:26:07,915 - trainer - INFO -     AA             : 0.9567708969116211
+2026-04-19 17:26:07,916 - trainer - INFO -     val_loss       : 0.4675710842013359
+2026-04-19 17:26:07,916 - trainer - INFO -     val_OA         : 0.940625011920929
+2026-04-19 17:26:07,917 - trainer - INFO -     val_AA         : 0.936294674873352
+2026-04-19 17:26:08,104 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch98.pth ...
+2026-04-19 17:27:25,958 - trainer - INFO -     epoch          : 99
+2026-04-19 17:27:25,959 - trainer - INFO -     loss           : 0.46548496223986147
+2026-04-19 17:27:25,959 - trainer - INFO -     OA             : 0.953125
+2026-04-19 17:27:25,960 - trainer - INFO -     AA             : 0.9428744316101074
+2026-04-19 17:27:25,960 - trainer - INFO -     val_loss       : 0.43548864424228667
+2026-04-19 17:27:25,961 - trainer - INFO -     val_OA         : 0.9620535969734192
+2026-04-19 17:27:25,962 - trainer - INFO -     val_AA         : 0.9491665959358215
+2026-04-19 17:27:26,144 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch99.pth ...
+2026-04-19 17:27:26,315 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-19 17:28:21,497 - trainer - INFO -     epoch          : 100
+2026-04-19 17:28:21,498 - trainer - INFO -     loss           : 0.45773211009800435
+2026-04-19 17:28:21,499 - trainer - INFO -     OA             : 0.956250011920929
+2026-04-19 17:28:21,499 - trainer - INFO -     AA             : 0.9520808458328247
+2026-04-19 17:28:21,500 - trainer - INFO -     val_loss       : 0.4265773415565491
+2026-04-19 17:28:21,500 - trainer - INFO -     val_OA         : 0.9781250357627869
+2026-04-19 17:28:21,501 - trainer - INFO -     val_AA         : 0.9795833826065063
+2026-04-19 17:28:21,673 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch100.pth ...
+2026-04-19 17:28:21,840 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-19 17:29:17,858 - trainer - INFO -     epoch          : 101
+2026-04-19 17:29:17,859 - trainer - INFO -     loss           : 0.4791748087853193
+2026-04-19 17:29:17,860 - trainer - INFO -     OA             : 0.9398437738418579
+2026-04-19 17:29:17,861 - trainer - INFO -     AA             : 0.9411606788635254
+2026-04-19 17:29:17,861 - trainer - INFO -     val_loss       : 0.4689585447311401
+2026-04-19 17:29:17,862 - trainer - INFO -     val_OA         : 0.953125
+2026-04-19 17:29:17,862 - trainer - INFO -     val_AA         : 0.9500744938850403
+2026-04-19 17:29:18,040 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch101.pth ...
+2026-04-19 17:30:13,685 - trainer - INFO -     epoch          : 102
+2026-04-19 17:30:13,686 - trainer - INFO -     loss           : 0.47068922184407713
+2026-04-19 17:30:13,687 - trainer - INFO -     OA             : 0.952343761920929
+2026-04-19 17:30:13,687 - trainer - INFO -     AA             : 0.9502207040786743
+2026-04-19 17:30:13,688 - trainer - INFO -     val_loss       : 0.44704835265874865
+2026-04-19 17:30:13,689 - trainer - INFO -     val_OA         : 0.9468750357627869
+2026-04-19 17:30:13,689 - trainer - INFO -     val_AA         : 0.9383630752563477
+2026-04-19 17:30:13,870 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch102.pth ...
+2026-04-19 17:31:12,544 - trainer - INFO -     epoch          : 103
+2026-04-19 17:31:12,544 - trainer - INFO -     loss           : 0.47461580745875837
+2026-04-19 17:31:12,545 - trainer - INFO -     OA             : 0.944531261920929
+2026-04-19 17:31:12,546 - trainer - INFO -     AA             : 0.9442968368530273
+2026-04-19 17:31:12,546 - trainer - INFO -     val_loss       : 0.4320844277739525
+2026-04-19 17:31:12,547 - trainer - INFO -     val_OA         : 0.9593750238418579
+2026-04-19 17:31:12,547 - trainer - INFO -     val_AA         : 0.9569493532180786
+2026-04-19 17:31:12,727 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch103.pth ...
+2026-04-19 17:32:43,987 - trainer - INFO -     epoch          : 104
+2026-04-19 17:32:43,988 - trainer - INFO -     loss           : 0.4572403285652399
+2026-04-19 17:32:43,988 - trainer - INFO -     OA             : 0.9609375
+2026-04-19 17:32:43,989 - trainer - INFO -     AA             : 0.9585886001586914
+2026-04-19 17:32:43,990 - trainer - INFO -     val_loss       : 0.44696012437343596
+2026-04-19 17:32:43,990 - trainer - INFO -     val_OA         : 0.9558035731315613
+2026-04-19 17:32:43,991 - trainer - INFO -     val_AA         : 0.9475000500679016
+2026-04-19 17:32:44,173 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch104.pth ...
+2026-04-19 17:33:48,064 - trainer - INFO -     epoch          : 105
+2026-04-19 17:33:48,064 - trainer - INFO -     loss           : 0.46877778321504593
+2026-04-19 17:33:48,065 - trainer - INFO -     OA             : 0.952343761920929
+2026-04-19 17:33:48,066 - trainer - INFO -     AA             : 0.9424976706504822
+2026-04-19 17:33:48,066 - trainer - INFO -     val_loss       : 0.4631402850151062
+2026-04-19 17:33:48,067 - trainer - INFO -     val_OA         : 0.9433035850524902
+2026-04-19 17:33:48,067 - trainer - INFO -     val_AA         : 0.9525595903396606
+2026-04-19 17:33:48,246 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch105.pth ...
+2026-04-19 17:34:48,722 - trainer - INFO -     epoch          : 106
+2026-04-19 17:34:48,723 - trainer - INFO -     loss           : 0.48145833127200605
+2026-04-19 17:34:48,723 - trainer - INFO -     OA             : 0.942187488079071
+2026-04-19 17:34:48,724 - trainer - INFO -     AA             : 0.9396361708641052
+2026-04-19 17:34:48,725 - trainer - INFO -     val_loss       : 0.47069165110588074
+2026-04-19 17:34:48,725 - trainer - INFO -     val_OA         : 0.9437500238418579
+2026-04-19 17:34:48,726 - trainer - INFO -     val_AA         : 0.9438541531562805
+2026-04-19 17:34:48,906 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch106.pth ...
+2026-04-19 17:36:07,239 - trainer - INFO -     epoch          : 107
+2026-04-19 17:36:07,240 - trainer - INFO -     loss           : 0.46380021162331103
+2026-04-19 17:36:07,240 - trainer - INFO -     OA             : 0.953906238079071
+2026-04-19 17:36:07,241 - trainer - INFO -     AA             : 0.9564348459243774
+2026-04-19 17:36:07,242 - trainer - INFO -     val_loss       : 0.45306181758642194
+2026-04-19 17:36:07,242 - trainer - INFO -     val_OA         : 0.956250011920929
+2026-04-19 17:36:07,242 - trainer - INFO -     val_AA         : 0.9520832896232605
+2026-04-19 17:36:07,424 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch107.pth ...
+2026-04-19 17:37:07,655 - trainer - INFO -     epoch          : 108
+2026-04-19 17:37:07,656 - trainer - INFO -     loss           : 0.45440788455307485
+2026-04-19 17:37:07,656 - trainer - INFO -     OA             : 0.96484375
+2026-04-19 17:37:07,657 - trainer - INFO -     AA             : 0.9655680060386658
+2026-04-19 17:37:07,658 - trainer - INFO -     val_loss       : 0.4626218155026436
+2026-04-19 17:37:07,658 - trainer - INFO -     val_OA         : 0.9558035731315613
+2026-04-19 17:37:07,659 - trainer - INFO -     val_AA         : 0.9438988566398621
+2026-04-19 17:37:07,853 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch108.pth ...
+2026-04-19 17:38:31,310 - trainer - INFO -     epoch          : 109
+2026-04-19 17:38:31,311 - trainer - INFO -     loss           : 0.4389419235289097
+2026-04-19 17:38:31,311 - trainer - INFO -     OA             : 0.967968761920929
+2026-04-19 17:38:31,312 - trainer - INFO -     AA             : 0.9556994438171387
+2026-04-19 17:38:31,313 - trainer - INFO -     val_loss       : 0.42934147715568544
+2026-04-19 17:38:31,313 - trainer - INFO -     val_OA         : 0.9750000238418579
+2026-04-19 17:38:31,314 - trainer - INFO -     val_AA         : 0.9655060172080994
+2026-04-19 17:38:31,498 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch109.pth ...
+2026-04-19 17:39:41,175 - trainer - INFO -     epoch          : 110
+2026-04-19 17:39:41,176 - trainer - INFO -     loss           : 0.455470223352313
+2026-04-19 17:39:41,177 - trainer - INFO -     OA             : 0.9593750238418579
+2026-04-19 17:39:41,177 - trainer - INFO -     AA             : 0.9578348398208618
+2026-04-19 17:39:41,178 - trainer - INFO -     val_loss       : 0.4371636435389519
+2026-04-19 17:39:41,179 - trainer - INFO -     val_OA         : 0.965624988079071
+2026-04-19 17:39:41,179 - trainer - INFO -     val_AA         : 0.9590327143669128
+2026-04-19 17:39:41,358 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch110.pth ...
+2026-04-19 17:40:50,709 - trainer - INFO -     epoch          : 111
+2026-04-19 17:40:50,710 - trainer - INFO -     loss           : 0.45113981924951074
+2026-04-19 17:40:50,711 - trainer - INFO -     OA             : 0.9664062857627869
+2026-04-19 17:40:50,711 - trainer - INFO -     AA             : 0.9618837237358093
+2026-04-19 17:40:50,712 - trainer - INFO -     val_loss       : 0.43798478692770004
+2026-04-19 17:40:50,712 - trainer - INFO -     val_OA         : 0.9625000357627869
+2026-04-19 17:40:50,713 - trainer - INFO -     val_AA         : 0.963660717010498
+2026-04-19 17:40:50,894 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch111.pth ...
+2026-04-19 17:41:57,346 - trainer - INFO -     epoch          : 112
+2026-04-19 17:41:57,346 - trainer - INFO -     loss           : 0.4463133569806814
+2026-04-19 17:41:57,347 - trainer - INFO -     OA             : 0.961718738079071
+2026-04-19 17:41:57,348 - trainer - INFO -     AA             : 0.9574565887451172
+2026-04-19 17:41:57,348 - trainer - INFO -     val_loss       : 0.43105310648679734
+2026-04-19 17:41:57,349 - trainer - INFO -     val_OA         : 0.971875011920929
+2026-04-19 17:41:57,350 - trainer - INFO -     val_AA         : 0.9748809933662415
+2026-04-19 17:41:57,530 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch112.pth ...
+2026-04-19 17:43:07,689 - trainer - INFO -     epoch          : 113
+2026-04-19 17:43:07,690 - trainer - INFO -     loss           : 0.45152135789394376
+2026-04-19 17:43:07,690 - trainer - INFO -     OA             : 0.9609375
+2026-04-19 17:43:07,691 - trainer - INFO -     AA             : 0.9613565802574158
+2026-04-19 17:43:07,691 - trainer - INFO -     val_loss       : 0.4278705596923828
+2026-04-19 17:43:07,692 - trainer - INFO -     val_OA         : 0.96875
+2026-04-19 17:43:07,693 - trainer - INFO -     val_AA         : 0.9619295001029968
+2026-04-19 17:43:07,875 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch113.pth ...
+2026-04-19 17:44:15,942 - trainer - INFO -     epoch          : 114
+2026-04-19 17:44:15,942 - trainer - INFO -     loss           : 0.4396539743989706
+2026-04-19 17:44:15,943 - trainer - INFO -     OA             : 0.96484375
+2026-04-19 17:44:15,944 - trainer - INFO -     AA             : 0.9650794267654419
+2026-04-19 17:44:15,944 - trainer - INFO -     val_loss       : 0.4274738520383835
+2026-04-19 17:44:15,945 - trainer - INFO -     val_OA         : 0.9709821939468384
+2026-04-19 17:44:15,946 - trainer - INFO -     val_AA         : 0.9738394021987915
+2026-04-19 17:44:16,127 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch114.pth ...
+2026-04-19 17:45:23,976 - trainer - INFO -     epoch          : 115
+2026-04-19 17:45:23,977 - trainer - INFO -     loss           : 0.4460613790899515
+2026-04-19 17:45:23,978 - trainer - INFO -     OA             : 0.969531238079071
+2026-04-19 17:45:23,978 - trainer - INFO -     AA             : 0.9629688262939453
+2026-04-19 17:45:23,979 - trainer - INFO -     val_loss       : 0.42355853468179705
+2026-04-19 17:45:23,980 - trainer - INFO -     val_OA         : 0.971875011920929
+2026-04-19 17:45:23,980 - trainer - INFO -     val_AA         : 0.9693750739097595
+2026-04-19 17:45:25,167 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch115.pth ...
+2026-04-19 17:45:25,864 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-19 17:46:48,207 - trainer - INFO -     epoch          : 116
+2026-04-19 17:46:48,208 - trainer - INFO -     loss           : 0.4348398245871067
+2026-04-19 17:46:48,209 - trainer - INFO -     OA             : 0.973437488079071
+2026-04-19 17:46:48,209 - trainer - INFO -     AA             : 0.9721552729606628
+2026-04-19 17:46:48,210 - trainer - INFO -     val_loss       : 0.4578558772802353
+2026-04-19 17:46:48,211 - trainer - INFO -     val_OA         : 0.949999988079071
+2026-04-19 17:46:48,211 - trainer - INFO -     val_AA         : 0.9572469592094421
+2026-04-19 17:46:48,395 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch116.pth ...
+2026-04-19 17:47:55,499 - trainer - INFO -     epoch          : 117
+2026-04-19 17:47:55,500 - trainer - INFO -     loss           : 0.44642627611756325
+2026-04-19 17:47:55,500 - trainer - INFO -     OA             : 0.9703125357627869
+2026-04-19 17:47:55,501 - trainer - INFO -     AA             : 0.9667436480522156
+2026-04-19 17:47:55,502 - trainer - INFO -     val_loss       : 0.4609859734773636
+2026-04-19 17:47:55,502 - trainer - INFO -     val_OA         : 0.953125
+2026-04-19 17:47:55,503 - trainer - INFO -     val_AA         : 0.9485416412353516
+2026-04-19 17:47:55,685 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch117.pth ...
+2026-04-19 17:48:59,853 - trainer - INFO -     epoch          : 118
+2026-04-19 17:48:59,853 - trainer - INFO -     loss           : 0.4522078514099121
+2026-04-19 17:48:59,854 - trainer - INFO -     OA             : 0.9632812738418579
+2026-04-19 17:48:59,855 - trainer - INFO -     AA             : 0.9648880958557129
+2026-04-19 17:48:59,855 - trainer - INFO -     val_loss       : 0.4500690996646881
+2026-04-19 17:48:59,856 - trainer - INFO -     val_OA         : 0.9589285850524902
+2026-04-19 17:48:59,857 - trainer - INFO -     val_AA         : 0.9437351226806641
+2026-04-19 17:49:00,038 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch118.pth ...
+2026-04-19 17:50:06,820 - trainer - INFO -     epoch          : 119
+2026-04-19 17:50:06,821 - trainer - INFO -     loss           : 0.44388832375407217
+2026-04-19 17:50:06,822 - trainer - INFO -     OA             : 0.967968761920929
+2026-04-19 17:50:06,823 - trainer - INFO -     AA             : 0.9661833047866821
+2026-04-19 17:50:06,823 - trainer - INFO -     val_loss       : 0.46018261909484864
+2026-04-19 17:50:06,824 - trainer - INFO -     val_OA         : 0.9495536088943481
+2026-04-19 17:50:06,825 - trainer - INFO -     val_AA         : 0.9594345092773438
+2026-04-19 17:50:07,008 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch119.pth ...
+2026-04-19 17:51:17,731 - trainer - INFO -     epoch          : 120
+2026-04-19 17:51:17,732 - trainer - INFO -     loss           : 0.4282450508326292
+2026-04-19 17:51:17,733 - trainer - INFO -     OA             : 0.9710937738418579
+2026-04-19 17:51:17,733 - trainer - INFO -     AA             : 0.9645673036575317
+2026-04-19 17:51:17,734 - trainer - INFO -     val_loss       : 0.43413396626710893
+2026-04-19 17:51:17,735 - trainer - INFO -     val_OA         : 0.965624988079071
+2026-04-19 17:51:17,735 - trainer - INFO -     val_AA         : 0.9688392877578735
+2026-04-19 17:51:17,920 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch120.pth ...
+2026-04-19 17:52:31,375 - trainer - INFO -     epoch          : 121
+2026-04-19 17:52:31,375 - trainer - INFO -     loss           : 0.43796641007065773
+2026-04-19 17:52:31,376 - trainer - INFO -     OA             : 0.9671875238418579
+2026-04-19 17:52:31,377 - trainer - INFO -     AA             : 0.9658259749412537
+2026-04-19 17:52:31,378 - trainer - INFO -     val_loss       : 0.4214290663599968
+2026-04-19 17:52:31,378 - trainer - INFO -     val_OA         : 0.9745535850524902
+2026-04-19 17:52:31,379 - trainer - INFO -     val_AA         : 0.9756250381469727
+2026-04-19 17:52:31,573 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch121.pth ...
+2026-04-19 17:52:31,756 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-19 17:53:59,216 - trainer - INFO -     epoch          : 122
+2026-04-19 17:53:59,217 - trainer - INFO -     loss           : 0.4430777423083782
+2026-04-19 17:53:59,218 - trainer - INFO -     OA             : 0.969531238079071
+2026-04-19 17:53:59,219 - trainer - INFO -     AA             : 0.9685788154602051
+2026-04-19 17:53:59,219 - trainer - INFO -     val_loss       : 0.4193936362862587
+2026-04-19 17:53:59,220 - trainer - INFO -     val_OA         : 0.9750000238418579
+2026-04-19 17:53:59,221 - trainer - INFO -     val_AA         : 0.9730952382087708
+2026-04-19 17:53:59,407 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch122.pth ...
+2026-04-19 17:53:59,579 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-19 17:55:25,078 - trainer - INFO -     epoch          : 123
+2026-04-19 17:55:25,079 - trainer - INFO -     loss           : 0.43170596808195116
+2026-04-19 17:55:25,080 - trainer - INFO -     OA             : 0.9750000238418579
+2026-04-19 17:55:25,081 - trainer - INFO -     AA             : 0.9775247573852539
+2026-04-19 17:55:25,081 - trainer - INFO -     val_loss       : 0.4633735716342926
+2026-04-19 17:55:25,082 - trainer - INFO -     val_OA         : 0.9495536088943481
+2026-04-19 17:55:25,082 - trainer - INFO -     val_AA         : 0.9503868222236633
+2026-04-19 17:55:25,269 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch123.pth ...
+2026-04-19 17:56:35,168 - trainer - INFO -     epoch          : 124
+2026-04-19 17:56:35,169 - trainer - INFO -     loss           : 0.433339948952198
+2026-04-19 17:56:35,170 - trainer - INFO -     OA             : 0.9742187857627869
+2026-04-19 17:56:35,170 - trainer - INFO -     AA             : 0.9765067100524902
+2026-04-19 17:56:35,171 - trainer - INFO -     val_loss       : 0.43582883179187776
+2026-04-19 17:56:35,172 - trainer - INFO -     val_OA         : 0.956250011920929
+2026-04-19 17:56:35,172 - trainer - INFO -     val_AA         : 0.9624504446983337
+2026-04-19 17:56:35,351 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch124.pth ...
+2026-04-19 17:57:44,018 - trainer - INFO -     epoch          : 125
+2026-04-19 17:57:44,019 - trainer - INFO -     loss           : 0.42470470927655696
+2026-04-19 17:57:44,019 - trainer - INFO -     OA             : 0.977343738079071
+2026-04-19 17:57:44,020 - trainer - INFO -     AA             : 0.9777492880821228
+2026-04-19 17:57:44,021 - trainer - INFO -     val_loss       : 0.43022179752588274
+2026-04-19 17:57:44,021 - trainer - INFO -     val_OA         : 0.9750000238418579
+2026-04-19 17:57:44,022 - trainer - INFO -     val_AA         : 0.9717559814453125
+2026-04-19 17:57:44,190 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch125.pth ...
+2026-04-19 17:58:54,060 - trainer - INFO -     epoch          : 126
+2026-04-19 17:58:54,060 - trainer - INFO -     loss           : 0.42300434969365597
+2026-04-19 17:58:54,061 - trainer - INFO -     OA             : 0.9781250357627869
+2026-04-19 17:58:54,062 - trainer - INFO -     AA             : 0.9771280288696289
+2026-04-19 17:58:54,062 - trainer - INFO -     val_loss       : 0.451763853430748
+2026-04-19 17:58:54,063 - trainer - INFO -     val_OA         : 0.9437500238418579
+2026-04-19 17:58:54,063 - trainer - INFO -     val_AA         : 0.935555636882782
+2026-04-19 17:58:54,247 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch126.pth ...
+2026-04-19 18:00:01,926 - trainer - INFO -     epoch          : 127
+2026-04-19 18:00:01,927 - trainer - INFO -     loss           : 0.4224101699888706
+2026-04-19 18:00:01,927 - trainer - INFO -     OA             : 0.9750000238418579
+2026-04-19 18:00:01,928 - trainer - INFO -     AA             : 0.9756572842597961
+2026-04-19 18:00:01,929 - trainer - INFO -     val_loss       : 0.4280331313610077
+2026-04-19 18:00:01,929 - trainer - INFO -     val_OA         : 0.971875011920929
+2026-04-19 18:00:01,930 - trainer - INFO -     val_AA         : 0.9592559933662415
+2026-04-19 18:00:02,125 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch127.pth ...
+2026-04-19 18:01:10,945 - trainer - INFO -     epoch          : 128
+2026-04-19 18:01:10,945 - trainer - INFO -     loss           : 0.4373359579592943
+2026-04-19 18:01:10,946 - trainer - INFO -     OA             : 0.97265625
+2026-04-19 18:01:10,947 - trainer - INFO -     AA             : 0.9752752184867859
+2026-04-19 18:01:10,947 - trainer - INFO -     val_loss       : 0.43231644928455354
+2026-04-19 18:01:10,948 - trainer - INFO -     val_OA         : 0.9620535969734192
+2026-04-19 18:01:10,949 - trainer - INFO -     val_AA         : 0.9630059599876404
+2026-04-19 18:01:11,142 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch128.pth ...
+2026-04-19 18:02:20,081 - trainer - INFO -     epoch          : 129
+2026-04-19 18:02:20,081 - trainer - INFO -     loss           : 0.42637204974889753
+2026-04-19 18:02:20,082 - trainer - INFO -     OA             : 0.9750000238418579
+2026-04-19 18:02:20,083 - trainer - INFO -     AA             : 0.9738901257514954
+2026-04-19 18:02:20,083 - trainer - INFO -     val_loss       : 0.4226286053657532
+2026-04-19 18:02:20,084 - trainer - INFO -     val_OA         : 0.9625000357627869
+2026-04-19 18:02:20,085 - trainer - INFO -     val_AA         : 0.9576041102409363
+2026-04-19 18:02:20,266 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch129.pth ...
+2026-04-19 18:04:25,621 - trainer - INFO -     epoch          : 130
+2026-04-19 18:04:25,621 - trainer - INFO -     loss           : 0.42177297957241533
+2026-04-19 18:04:25,622 - trainer - INFO -     OA             : 0.973437488079071
+2026-04-19 18:04:25,623 - trainer - INFO -     AA             : 0.9755915999412537
+2026-04-19 18:04:25,623 - trainer - INFO -     val_loss       : 0.4261337712407112
+2026-04-19 18:04:25,624 - trainer - INFO -     val_OA         : 0.96875
+2026-04-19 18:04:25,625 - trainer - INFO -     val_AA         : 0.9598512053489685
+2026-04-19 18:04:25,798 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch130.pth ...
+2026-04-19 18:06:53,834 - trainer - INFO -     epoch          : 131
+2026-04-19 18:06:53,835 - trainer - INFO -     loss           : 0.42193427085876467
+2026-04-19 18:06:53,836 - trainer - INFO -     OA             : 0.977343738079071
+2026-04-19 18:06:53,836 - trainer - INFO -     AA             : 0.9787673354148865
+2026-04-19 18:06:53,837 - trainer - INFO -     val_loss       : 0.44378301650285723
+2026-04-19 18:06:53,838 - trainer - INFO -     val_OA         : 0.96875
+2026-04-19 18:06:53,838 - trainer - INFO -     val_AA         : 0.9662500619888306
+2026-04-19 18:06:54,019 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch131.pth ...
+2026-04-19 18:08:31,561 - trainer - INFO -     epoch          : 132
+2026-04-19 18:08:31,562 - trainer - INFO -     loss           : 0.4149598442018032
+2026-04-19 18:08:31,563 - trainer - INFO -     OA             : 0.979687511920929
+2026-04-19 18:08:31,564 - trainer - INFO -     AA             : 0.980995774269104
+2026-04-19 18:08:31,564 - trainer - INFO -     val_loss       : 0.4426281377673149
+2026-04-19 18:08:31,565 - trainer - INFO -     val_OA         : 0.9593750238418579
+2026-04-19 18:08:31,566 - trainer - INFO -     val_AA         : 0.9553125500679016
+2026-04-19 18:08:31,746 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch132.pth ...
+2026-04-19 18:10:37,537 - trainer - INFO -     epoch          : 133
+2026-04-19 18:10:37,538 - trainer - INFO -     loss           : 0.4266691092401743
+2026-04-19 18:10:37,539 - trainer - INFO -     OA             : 0.975781261920929
+2026-04-19 18:10:37,539 - trainer - INFO -     AA             : 0.9720498323440552
+2026-04-19 18:10:37,540 - trainer - INFO -     val_loss       : 0.4645001024007797
+2026-04-19 18:10:37,541 - trainer - INFO -     val_OA         : 0.9433035850524902
+2026-04-19 18:10:37,542 - trainer - INFO -     val_AA         : 0.9412897229194641
+2026-04-19 18:10:37,712 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch133.pth ...
+2026-04-19 18:11:57,475 - trainer - INFO -     epoch          : 134
+2026-04-19 18:11:57,476 - trainer - INFO -     loss           : 0.42992019690573213
+2026-04-19 18:11:57,476 - trainer - INFO -     OA             : 0.967968761920929
+2026-04-19 18:11:57,477 - trainer - INFO -     AA             : 0.967501163482666
+2026-04-19 18:11:57,478 - trainer - INFO -     val_loss       : 0.4143145889043808
+2026-04-19 18:11:57,478 - trainer - INFO -     val_OA         : 0.9683036208152771
+2026-04-19 18:11:57,479 - trainer - INFO -     val_AA         : 0.9704166650772095
+2026-04-19 18:11:57,650 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch134.pth ...
+2026-04-19 18:11:57,817 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-19 18:13:17,057 - trainer - INFO -     epoch          : 135
+2026-04-19 18:13:17,057 - trainer - INFO -     loss           : 0.4244585569947958
+2026-04-19 18:13:17,058 - trainer - INFO -     OA             : 0.9750000238418579
+2026-04-19 18:13:17,059 - trainer - INFO -     AA             : 0.9708905220031738
+2026-04-19 18:13:17,059 - trainer - INFO -     val_loss       : 0.42498974949121476
+2026-04-19 18:13:17,060 - trainer - INFO -     val_OA         : 0.971875011920929
+2026-04-19 18:13:17,060 - trainer - INFO -     val_AA         : 0.9606249928474426
+2026-04-19 18:13:17,231 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch135.pth ...
+2026-04-19 18:14:12,625 - trainer - INFO -     epoch          : 136
+2026-04-19 18:14:12,625 - trainer - INFO -     loss           : 0.420954717695713
+2026-04-19 18:14:12,626 - trainer - INFO -     OA             : 0.9765625
+2026-04-19 18:14:12,627 - trainer - INFO -     AA             : 0.9761905670166016
+2026-04-19 18:14:12,628 - trainer - INFO -     val_loss       : 0.41964274644851685
+2026-04-19 18:14:12,628 - trainer - INFO -     val_OA         : 0.965624988079071
+2026-04-19 18:14:12,629 - trainer - INFO -     val_AA         : 0.9539284706115723
+2026-04-19 18:14:12,804 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch136.pth ...
+2026-04-19 18:15:08,895 - trainer - INFO -     epoch          : 137
+2026-04-19 18:15:08,895 - trainer - INFO -     loss           : 0.4259680315852165
+2026-04-19 18:15:08,896 - trainer - INFO -     OA             : 0.97265625
+2026-04-19 18:15:08,897 - trainer - INFO -     AA             : 0.9734126329421997
+2026-04-19 18:15:08,897 - trainer - INFO -     val_loss       : 0.428027381002903
+2026-04-19 18:15:08,898 - trainer - INFO -     val_OA         : 0.9683036208152771
+2026-04-19 18:15:08,899 - trainer - INFO -     val_AA         : 0.967291533946991
+2026-04-19 18:15:09,080 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch137.pth ...
+2026-04-19 18:16:26,418 - trainer - INFO -     epoch          : 138
+2026-04-19 18:16:26,419 - trainer - INFO -     loss           : 0.42155100367963316
+2026-04-19 18:16:26,420 - trainer - INFO -     OA             : 0.979687511920929
+2026-04-19 18:16:26,420 - trainer - INFO -     AA             : 0.9799094200134277
+2026-04-19 18:16:26,421 - trainer - INFO -     val_loss       : 0.41524985134601594
+2026-04-19 18:16:26,421 - trainer - INFO -     val_OA         : 0.9750000238418579
+2026-04-19 18:16:26,422 - trainer - INFO -     val_AA         : 0.9750892519950867
+2026-04-19 18:16:26,600 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch138.pth ...
+2026-04-19 18:17:44,371 - trainer - INFO -     epoch          : 139
+2026-04-19 18:17:44,371 - trainer - INFO -     loss           : 0.41804869547486306
+2026-04-19 18:17:44,371 - trainer - INFO -     OA             : 0.977343738079071
+2026-04-19 18:17:44,373 - trainer - INFO -     AA             : 0.975773811340332
+2026-04-19 18:17:44,374 - trainer - INFO -     val_loss       : 0.4214457109570503
+2026-04-19 18:17:44,374 - trainer - INFO -     val_OA         : 0.965624988079071
+2026-04-19 18:17:44,374 - trainer - INFO -     val_AA         : 0.965381920337677
+2026-04-19 18:17:44,556 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch139.pth ...
+2026-04-19 18:19:04,317 - trainer - INFO -     epoch          : 140
+2026-04-19 18:19:04,318 - trainer - INFO -     loss           : 0.4140256468206644
+2026-04-19 18:19:04,319 - trainer - INFO -     OA             : 0.979687511920929
+2026-04-19 18:19:04,319 - trainer - INFO -     AA             : 0.9779478311538696
+2026-04-19 18:19:04,320 - trainer - INFO -     val_loss       : 0.44697082191705706
+2026-04-19 18:19:04,320 - trainer - INFO -     val_OA         : 0.9625000357627869
+2026-04-19 18:19:04,321 - trainer - INFO -     val_AA         : 0.9685648083686829
+2026-04-19 18:19:05,337 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch140.pth ...
+2026-04-19 18:20:25,579 - trainer - INFO -     epoch          : 141
+2026-04-19 18:20:25,580 - trainer - INFO -     loss           : 0.41658150441944597
+2026-04-19 18:20:25,580 - trainer - INFO -     OA             : 0.981249988079071
+2026-04-19 18:20:25,581 - trainer - INFO -     AA             : 0.9782441258430481
+2026-04-19 18:20:25,582 - trainer - INFO -     val_loss       : 0.43474987149238586
+2026-04-19 18:20:25,582 - trainer - INFO -     val_OA         : 0.9625000357627869
+2026-04-19 18:20:25,583 - trainer - INFO -     val_AA         : 0.9666320085525513
+2026-04-19 18:20:25,761 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch141.pth ...
+2026-04-19 18:21:21,501 - trainer - INFO -     epoch          : 142
+2026-04-19 18:21:21,502 - trainer - INFO -     loss           : 0.415145443752408
+2026-04-19 18:21:21,502 - trainer - INFO -     OA             : 0.979687511920929
+2026-04-19 18:21:21,503 - trainer - INFO -     AA             : 0.9782440066337585
+2026-04-19 18:21:21,503 - trainer - INFO -     val_loss       : 0.42665005326271055
+2026-04-19 18:21:21,504 - trainer - INFO -     val_OA         : 0.9745535850524902
+2026-04-19 18:21:21,505 - trainer - INFO -     val_AA         : 0.9690665602684021
+2026-04-19 18:21:21,691 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch142.pth ...
+2026-04-19 18:22:40,916 - trainer - INFO -     epoch          : 143
+2026-04-19 18:22:40,916 - trainer - INFO -     loss           : 0.4122410178184509
+2026-04-19 18:22:40,917 - trainer - INFO -     OA             : 0.983593761920929
+2026-04-19 18:22:40,917 - trainer - INFO -     AA             : 0.9850298166275024
+2026-04-19 18:22:40,918 - trainer - INFO -     val_loss       : 0.40784363597631457
+2026-04-19 18:22:40,918 - trainer - INFO -     val_OA         : 0.9750000238418579
+2026-04-19 18:22:40,919 - trainer - INFO -     val_AA         : 0.9762501120567322
+2026-04-19 18:22:41,100 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch143.pth ...
+2026-04-19 18:22:41,271 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-19 18:23:37,589 - trainer - INFO -     epoch          : 144
+2026-04-19 18:23:37,590 - trainer - INFO -     loss           : 0.41205205507576464
+2026-04-19 18:23:37,590 - trainer - INFO -     OA             : 0.9828125238418579
+2026-04-19 18:23:37,591 - trainer - INFO -     AA             : 0.9824128150939941
+2026-04-19 18:23:37,592 - trainer - INFO -     val_loss       : 0.41251114308834075
+2026-04-19 18:23:37,592 - trainer - INFO -     val_OA         : 0.981249988079071
+2026-04-19 18:23:37,593 - trainer - INFO -     val_AA         : 0.9818750619888306
+2026-04-19 18:23:37,765 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch144.pth ...
+2026-04-19 18:24:55,739 - trainer - INFO -     epoch          : 145
+2026-04-19 18:24:55,740 - trainer - INFO -     loss           : 0.4107159297913313
+2026-04-19 18:24:55,741 - trainer - INFO -     OA             : 0.984375
+2026-04-19 18:24:55,741 - trainer - INFO -     AA             : 0.9793972969055176
+2026-04-19 18:24:55,742 - trainer - INFO -     val_loss       : 0.4275030195713043
+2026-04-19 18:24:55,742 - trainer - INFO -     val_OA         : 0.9750000238418579
+2026-04-19 18:24:55,743 - trainer - INFO -     val_AA         : 0.9700893759727478
+2026-04-19 18:24:55,924 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch145.pth ...
+2026-04-19 18:25:50,485 - trainer - INFO -     epoch          : 146
+2026-04-19 18:25:50,485 - trainer - INFO -     loss           : 0.41168065518140795
+2026-04-19 18:25:50,486 - trainer - INFO -     OA             : 0.9765625
+2026-04-19 18:25:50,486 - trainer - INFO -     AA             : 0.9741294980049133
+2026-04-19 18:25:50,487 - trainer - INFO -     val_loss       : 0.4367909967899323
+2026-04-19 18:25:50,487 - trainer - INFO -     val_OA         : 0.9584822058677673
+2026-04-19 18:25:50,488 - trainer - INFO -     val_AA         : 0.9575892686843872
+2026-04-19 18:25:50,666 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch146.pth ...
+2026-04-19 18:27:06,256 - trainer - INFO -     epoch          : 147
+2026-04-19 18:27:06,256 - trainer - INFO -     loss           : 0.4087224449962378
+2026-04-19 18:27:06,257 - trainer - INFO -     OA             : 0.98046875
+2026-04-19 18:27:06,258 - trainer - INFO -     AA             : 0.9791554808616638
+2026-04-19 18:27:06,258 - trainer - INFO -     val_loss       : 0.4244830057024956
+2026-04-19 18:27:06,259 - trainer - INFO -     val_OA         : 0.96875
+2026-04-19 18:27:06,260 - trainer - INFO -     val_AA         : 0.9674850702285767
+2026-04-19 18:27:06,429 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch147.pth ...
+2026-04-19 18:28:12,055 - trainer - INFO -     epoch          : 148
+2026-04-19 18:28:12,056 - trainer - INFO -     loss           : 0.40602245815098287
+2026-04-19 18:28:12,057 - trainer - INFO -     OA             : 0.985156238079071
+2026-04-19 18:28:12,057 - trainer - INFO -     AA             : 0.9844444394111633
+2026-04-19 18:28:12,058 - trainer - INFO -     val_loss       : 0.41260862052440644
+2026-04-19 18:28:12,058 - trainer - INFO -     val_OA         : 0.9750000238418579
+2026-04-19 18:28:12,059 - trainer - INFO -     val_AA         : 0.9743303656578064
+2026-04-19 18:28:12,231 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch148.pth ...
+2026-04-19 18:29:37,300 - trainer - INFO -     epoch          : 149
+2026-04-19 18:29:37,301 - trainer - INFO -     loss           : 0.4102277770638466
+2026-04-19 18:29:37,301 - trainer - INFO -     OA             : 0.9828125238418579
+2026-04-19 18:29:37,302 - trainer - INFO -     AA             : 0.9854115843772888
+2026-04-19 18:29:37,302 - trainer - INFO -     val_loss       : 0.42185812145471574
+2026-04-19 18:29:37,303 - trainer - INFO -     val_OA         : 0.9750000238418579
+2026-04-19 18:29:37,304 - trainer - INFO -     val_AA         : 0.9650892615318298
+2026-04-19 18:29:37,470 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch149.pth ...
+2026-04-19 18:30:31,966 - trainer - INFO -     epoch          : 150
+2026-04-19 18:30:31,966 - trainer - INFO -     loss           : 0.40535519681870935
+2026-04-19 18:30:31,967 - trainer - INFO -     OA             : 0.984375
+2026-04-19 18:30:31,968 - trainer - INFO -     AA             : 0.9843176007270813
+2026-04-19 18:30:31,968 - trainer - INFO -     val_loss       : 0.4152137741446495
+2026-04-19 18:30:31,969 - trainer - INFO -     val_OA         : 0.9750000238418579
+2026-04-19 18:30:31,970 - trainer - INFO -     val_AA         : 0.96770840883255
+2026-04-19 18:30:32,157 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch150.pth ...
+2026-04-19 18:31:50,619 - trainer - INFO -     epoch          : 151
+2026-04-19 18:31:50,620 - trainer - INFO -     loss           : 0.4042659133672714
+2026-04-19 18:31:50,621 - trainer - INFO -     OA             : 0.989062488079071
+2026-04-19 18:31:50,621 - trainer - INFO -     AA             : 0.9879860877990723
+2026-04-19 18:31:50,622 - trainer - INFO -     val_loss       : 0.42093636393547057
+2026-04-19 18:31:50,622 - trainer - INFO -     val_OA         : 0.9745535850524902
+2026-04-19 18:31:50,623 - trainer - INFO -     val_AA         : 0.9758333563804626
+2026-04-19 18:31:50,789 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch151.pth ...
+2026-04-19 18:32:46,206 - trainer - INFO -     epoch          : 152
+2026-04-19 18:32:46,207 - trainer - INFO -     loss           : 0.41081496737897394
+2026-04-19 18:32:46,208 - trainer - INFO -     OA             : 0.984375
+2026-04-19 18:32:46,208 - trainer - INFO -     AA             : 0.9799442291259766
+2026-04-19 18:32:46,209 - trainer - INFO -     val_loss       : 0.4148865520954132
+2026-04-19 18:32:46,210 - trainer - INFO -     val_OA         : 0.9750000238418579
+2026-04-19 18:32:46,210 - trainer - INFO -     val_AA         : 0.9801042675971985
+2026-04-19 18:32:46,381 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch152.pth ...
+2026-04-19 18:33:40,953 - trainer - INFO -     epoch          : 153
+2026-04-19 18:33:40,954 - trainer - INFO -     loss           : 0.4020323555916548
+2026-04-19 18:33:40,954 - trainer - INFO -     OA             : 0.987500011920929
+2026-04-19 18:33:40,955 - trainer - INFO -     AA             : 0.9839706420898438
+2026-04-19 18:33:40,955 - trainer - INFO -     val_loss       : 0.41388882249593734
+2026-04-19 18:33:40,956 - trainer - INFO -     val_OA         : 0.9781250357627869
+2026-04-19 18:33:40,956 - trainer - INFO -     val_AA         : 0.9795833826065063
+2026-04-19 18:33:41,124 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch153.pth ...
+2026-04-19 18:34:35,446 - trainer - INFO -     epoch          : 154
+2026-04-19 18:34:35,447 - trainer - INFO -     loss           : 0.40934321843087673
+2026-04-19 18:34:35,448 - trainer - INFO -     OA             : 0.985156238079071
+2026-04-19 18:34:35,448 - trainer - INFO -     AA             : 0.9865848422050476
+2026-04-19 18:34:35,449 - trainer - INFO -     val_loss       : 0.4218195989727974
+2026-04-19 18:34:35,449 - trainer - INFO -     val_OA         : 0.9745535850524902
+2026-04-19 18:34:35,450 - trainer - INFO -     val_AA         : 0.9805208444595337
+2026-04-19 18:34:35,616 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch154.pth ...
+2026-04-19 18:35:51,843 - trainer - INFO -     epoch          : 155
+2026-04-19 18:35:51,843 - trainer - INFO -     loss           : 0.41042413339018824
+2026-04-19 18:35:51,844 - trainer - INFO -     OA             : 0.983593761920929
+2026-04-19 18:35:51,845 - trainer - INFO -     AA             : 0.9851561784744263
+2026-04-19 18:35:51,845 - trainer - INFO -     val_loss       : 0.4286643534898758
+2026-04-19 18:35:51,846 - trainer - INFO -     val_OA         : 0.965624988079071
+2026-04-19 18:35:51,846 - trainer - INFO -     val_AA         : 0.9639583826065063
+2026-04-19 18:35:52,019 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch155.pth ...
+2026-04-19 18:36:47,198 - trainer - INFO -     epoch          : 156
+2026-04-19 18:36:47,199 - trainer - INFO -     loss           : 0.40359725132584573
+2026-04-19 18:36:47,200 - trainer - INFO -     OA             : 0.987500011920929
+2026-04-19 18:36:47,200 - trainer - INFO -     AA             : 0.9867399334907532
+2026-04-19 18:36:47,201 - trainer - INFO -     val_loss       : 0.40972703546285627
+2026-04-19 18:36:47,201 - trainer - INFO -     val_OA         : 0.9781250357627869
+2026-04-19 18:36:47,202 - trainer - INFO -     val_AA         : 0.9762499928474426
+2026-04-19 18:36:47,371 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch156.pth ...
+2026-04-19 18:37:42,886 - trainer - INFO -     epoch          : 157
+2026-04-19 18:37:42,886 - trainer - INFO -     loss           : 0.402750488743186
+2026-04-19 18:37:42,887 - trainer - INFO -     OA             : 0.9859375357627869
+2026-04-19 18:37:42,888 - trainer - INFO -     AA             : 0.985145092010498
+2026-04-19 18:37:42,888 - trainer - INFO -     val_loss       : 0.4124090611934662
+2026-04-19 18:37:42,889 - trainer - INFO -     val_OA         : 0.9750000238418579
+2026-04-19 18:37:42,889 - trainer - INFO -     val_AA         : 0.9790277481079102
+2026-04-19 18:37:43,057 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch157.pth ...
+2026-04-19 18:39:00,621 - trainer - INFO -     epoch          : 158
+2026-04-19 18:39:00,622 - trainer - INFO -     loss           : 0.39570189714431764
+2026-04-19 18:39:00,622 - trainer - INFO -     OA             : 0.9898437857627869
+2026-04-19 18:39:00,623 - trainer - INFO -     AA             : 0.9902083277702332
+2026-04-19 18:39:00,623 - trainer - INFO -     val_loss       : 0.4141177624464035
+2026-04-19 18:39:00,624 - trainer - INFO -     val_OA         : 0.96875
+2026-04-19 18:39:00,624 - trainer - INFO -     val_AA         : 0.9677082896232605
+2026-04-19 18:39:00,791 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch158.pth ...
+2026-04-19 18:39:55,467 - trainer - INFO -     epoch          : 159
+2026-04-19 18:39:55,467 - trainer - INFO -     loss           : 0.4068001091480255
+2026-04-19 18:39:55,468 - trainer - INFO -     OA             : 0.9859375357627869
+2026-04-19 18:39:55,469 - trainer - INFO -     AA             : 0.9855952262878418
+2026-04-19 18:39:55,469 - trainer - INFO -     val_loss       : 0.4159974992275238
+2026-04-19 18:39:55,470 - trainer - INFO -     val_OA         : 0.9750000238418579
+2026-04-19 18:39:55,470 - trainer - INFO -     val_AA         : 0.9780060052871704
+2026-04-19 18:39:55,641 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch159.pth ...
+2026-04-19 18:40:50,515 - trainer - INFO -     epoch          : 160
+2026-04-19 18:40:50,516 - trainer - INFO -     loss           : 0.400705324485898
+2026-04-19 18:40:50,517 - trainer - INFO -     OA             : 0.98828125
+2026-04-19 18:40:50,517 - trainer - INFO -     AA             : 0.9893079996109009
+2026-04-19 18:40:50,518 - trainer - INFO -     val_loss       : 0.41274079978466033
+2026-04-19 18:40:50,518 - trainer - INFO -     val_OA         : 0.9776785969734192
+2026-04-19 18:40:50,519 - trainer - INFO -     val_AA         : 0.9747916460037231
+2026-04-19 18:40:50,688 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch160.pth ...
+2026-04-19 18:42:07,687 - trainer - INFO -     epoch          : 161
+2026-04-19 18:42:07,687 - trainer - INFO -     loss           : 0.3984542079269886
+2026-04-19 18:42:07,688 - trainer - INFO -     OA             : 0.987500011920929
+2026-04-19 18:42:07,688 - trainer - INFO -     AA             : 0.9854130148887634
+2026-04-19 18:42:07,689 - trainer - INFO -     val_loss       : 0.41036072969436643
+2026-04-19 18:42:07,689 - trainer - INFO -     val_OA         : 0.981249988079071
+2026-04-19 18:42:07,690 - trainer - INFO -     val_AA         : 0.9720833897590637
+2026-04-19 18:42:07,860 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch161.pth ...
+2026-04-19 18:43:02,077 - trainer - INFO -     epoch          : 162
+2026-04-19 18:43:02,078 - trainer - INFO -     loss           : 0.3993684746325016
+2026-04-19 18:43:02,078 - trainer - INFO -     OA             : 0.989062488079071
+2026-04-19 18:43:02,079 - trainer - INFO -     AA             : 0.9851042032241821
+2026-04-19 18:43:02,080 - trainer - INFO -     val_loss       : 0.4121212616562843
+2026-04-19 18:43:02,080 - trainer - INFO -     val_OA         : 0.9776785969734192
+2026-04-19 18:43:02,081 - trainer - INFO -     val_AA         : 0.9772917032241821
+2026-04-19 18:43:02,256 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch162.pth ...
+2026-04-19 18:43:55,666 - trainer - INFO -     epoch          : 163
+2026-04-19 18:43:55,667 - trainer - INFO -     loss           : 0.4031544629484415
+2026-04-19 18:43:55,668 - trainer - INFO -     OA             : 0.98046875
+2026-04-19 18:43:55,668 - trainer - INFO -     AA             : 0.9792585372924805
+2026-04-19 18:43:55,669 - trainer - INFO -     val_loss       : 0.4191285341978073
+2026-04-19 18:43:55,670 - trainer - INFO -     val_OA         : 0.971875011920929
+2026-04-19 18:43:55,670 - trainer - INFO -     val_AA         : 0.9770833253860474
+2026-04-19 18:43:55,839 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2\0419_152153\checkpoint-epoch163.pth ...
+2026-04-19 18:44:49,162 - trainer - INFO -     epoch          : 164
+2026-04-19 18:44:49,163 - trainer - INFO -     loss           : 0.4029845971614122
+2026-04-19 18:44:49,163 - trainer - INFO -     OA             : 0.9859375357627869
+2026-04-19 18:44:49,164 - trainer - INFO -     AA             : 0.9835218787193298
+2026-04-19 18:44:49,164 - trainer - INFO -     val_loss       : 0.41284442096948626
+2026-04-19 18:44:49,165 - trainer - INFO -     val_OA         : 0.9683036208152771
+2026-04-19 18:44:49,166 - trainer - INFO -     val_AA         : 0.9724999666213989
+2026-04-19 18:44:49,166 - trainer - INFO - Validation performance didn't improve for 20 epochs. Training stops.

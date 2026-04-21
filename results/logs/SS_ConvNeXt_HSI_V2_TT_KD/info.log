@@ -1,0 +1,296 @@
+2026-04-20 23:26:37,572 - train - INFO - SS_ConvNeXt_V2(
+  (downsample_layers): ModuleList(
+    (0): Sequential(
+      (0): Conv2d(204, 64, kernel_size=(1, 1), stride=(1, 1))
+      (1): LayerNorm()
+      (2): GELU(approximate='none')
+    )
+    (1): Sequential(
+      (0): LayerNorm()
+      (1): Conv2d(64, 128, kernel_size=(2, 2), stride=(2, 2))
+    )
+    (2): Sequential(
+      (0): LayerNorm()
+      (1): Conv2d(128, 256, kernel_size=(2, 2), stride=(2, 2))
+    )
+    (3): Sequential(
+      (0): LayerNorm()
+      (1): Conv2d(256, 512, kernel_size=(2, 2), stride=(2, 2))
+    )
+  )
+  (main_layers): ModuleList(
+    (0): Sequential(
+      (0): spatial_ConvBlock(
+        (dwconv): Conv2d(64, 64, kernel_size=(3, 11), stride=(1, 1), padding=same, groups=64)
+        (norm): LayerNorm()
+        (pwconv1): FactorizedLinear(in_features=64, out_features=256, weight of size (256, 64) tensorized to ((4, 4, 16), (4, 4, 4)),factorization=BlockTT, rank=[1, 18, 45, 1], implementation=factorized, with a single layer parametrized, 
+        (act): GELU(approximate='none')
+        (grn): GRN()
+        (pwconv2): FactorizedLinear(in_features=256, out_features=64, weight of size (64, 256) tensorized to ((4, 4, 4), (4, 4, 16)),factorization=BlockTT, rank=[1, 18, 45, 1], implementation=factorized, with a single layer parametrized, 
+        (drop_path): Identity()
+      )
+      (1): spectral_ConvBlock(
+        (dwconv): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+        (norm): LayerNorm()
+        (pwconv1): FactorizedLinear(in_features=64, out_features=256, weight of size (256, 64) tensorized to ((4, 4, 16), (4, 4, 4)),factorization=BlockTT, rank=[1, 18, 45, 1], implementation=factorized, with a single layer parametrized, 
+        (act): GELU(approximate='none')
+        (grn): GRN()
+        (pwconv2): FactorizedLinear(in_features=256, out_features=64, weight of size (64, 256) tensorized to ((4, 4, 4), (4, 4, 16)),factorization=BlockTT, rank=[1, 18, 45, 1], implementation=factorized, with a single layer parametrized, 
+        (drop_path): DropPath()
+      )
+    )
+    (1): Sequential(
+      (0): spatial_ConvBlock(
+        (dwconv): Conv2d(128, 128, kernel_size=(3, 11), stride=(1, 1), padding=same, groups=128)
+        (norm): LayerNorm()
+        (pwconv1): FactorizedLinear(in_features=128, out_features=512, weight of size (512, 128) tensorized to ((4, 8, 16), (4, 4, 8)),factorization=BlockTT, rank=[1, 19, 65, 1], implementation=factorized, with a single layer parametrized, 
+        (act): GELU(approximate='none')
+        (grn): GRN()
+        (pwconv2): FactorizedLinear(in_features=512, out_features=128, weight of size (128, 512) tensorized to ((4, 4, 8), (4, 8, 16)),factorization=BlockTT, rank=[1, 19, 65, 1], implementation=factorized, with a single layer parametrized, 
+        (drop_path): DropPath()
+      )
+      (1): spectral_ConvBlock(
+        (dwconv): Conv2d(128, 128, kernel_size=(1, 1), stride=(1, 1))
+        (norm): LayerNorm()
+        (pwconv1): FactorizedLinear(in_features=128, out_features=512, weight of size (512, 128) tensorized to ((4, 8, 16), (4, 4, 8)),factorization=BlockTT, rank=[1, 19, 65, 1], implementation=factorized, with a single layer parametrized, 
+        (act): GELU(approximate='none')
+        (grn): GRN()
+        (pwconv2): FactorizedLinear(in_features=512, out_features=128, weight of size (128, 512) tensorized to ((4, 4, 8), (4, 8, 16)),factorization=BlockTT, rank=[1, 19, 65, 1], implementation=factorized, with a single layer parametrized, 
+        (drop_path): DropPath()
+      )
+    )
+    (2): Sequential(
+      (0): spatial_ConvBlock(
+        (dwconv): Conv2d(256, 256, kernel_size=(3, 11), stride=(1, 1), padding=same, groups=256)
+        (norm): LayerNorm()
+        (pwconv1): FactorizedLinear(in_features=256, out_features=1024, weight of size (1024, 256) tensorized to ((4, 16, 16), (4, 4, 16)),factorization=BlockTT, rank=[1, 21, 83, 1], implementation=factorized, with a single layer parametrized, 
+        (act): GELU(approximate='none')
+        (grn): GRN()
+        (pwconv2): FactorizedLinear(in_features=1024, out_features=256, weight of size (256, 1024) tensorized to ((4, 4, 16), (4, 16, 16)),factorization=BlockTT, rank=[1, 21, 83, 1], implementation=factorized, with a single layer parametrized, 
+        (drop_path): DropPath()
+      )
+      (1): spatial_ConvBlock(
+        (dwconv): Conv2d(256, 256, kernel_size=(3, 11), stride=(1, 1), padding=same, groups=256)
+        (norm): LayerNorm()
+        (pwconv1): FactorizedLinear(in_features=256, out_features=1024, weight of size (1024, 256) tensorized to ((4, 16, 16), (4, 4, 16)),factorization=BlockTT, rank=[1, 21, 83, 1], implementation=factorized, with a single layer parametrized, 
+        (act): GELU(approximate='none')
+        (grn): GRN()
+        (pwconv2): FactorizedLinear(in_features=1024, out_features=256, weight of size (256, 1024) tensorized to ((4, 4, 16), (4, 16, 16)),factorization=BlockTT, rank=[1, 21, 83, 1], implementation=factorized, with a single layer parametrized, 
+        (drop_path): DropPath()
+      )
+      (2): spectral_ConvBlock(
+        (dwconv): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (norm): LayerNorm()
+        (pwconv1): FactorizedLinear(in_features=256, out_features=1024, weight of size (1024, 256) tensorized to ((4, 16, 16), (4, 4, 16)),factorization=BlockTT, rank=[1, 21, 83, 1], implementation=factorized, with a single layer parametrized, 
+        (act): GELU(approximate='none')
+        (grn): GRN()
+        (pwconv2): FactorizedLinear(in_features=1024, out_features=256, weight of size (256, 1024) tensorized to ((4, 4, 16), (4, 16, 16)),factorization=BlockTT, rank=[1, 21, 83, 1], implementation=factorized, with a single layer parametrized, 
+        (drop_path): DropPath()
+      )
+      (3): spectral_ConvBlock(
+        (dwconv): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (norm): LayerNorm()
+        (pwconv1): FactorizedLinear(in_features=256, out_features=1024, weight of size (1024, 256) tensorized to ((4, 16, 16), (4, 4, 16)),factorization=BlockTT, rank=[1, 21, 83, 1], implementation=factorized, with a single layer parametrized, 
+        (act): GELU(approximate='none')
+        (grn): GRN()
+        (pwconv2): FactorizedLinear(in_features=1024, out_features=256, weight of size (256, 1024) tensorized to ((4, 4, 16), (4, 16, 16)),factorization=BlockTT, rank=[1, 21, 83, 1], implementation=factorized, with a single layer parametrized, 
+        (drop_path): DropPath()
+      )
+    )
+    (3): Sequential(
+      (0): spatial_ConvBlock(
+        (dwconv): Conv2d(512, 512, kernel_size=(3, 11), stride=(1, 1), padding=same, groups=512)
+        (norm): LayerNorm()
+        (pwconv1): FactorizedLinear(in_features=512, out_features=2048, weight of size (2048, 512) tensorized to ((8, 16, 16), (4, 8, 16)),factorization=BlockTT, rank=[1, 31, 74, 1], implementation=factorized, with a single layer parametrized, 
+        (act): GELU(approximate='none')
+        (grn): GRN()
+        (pwconv2): FactorizedLinear(in_features=2048, out_features=512, weight of size (512, 2048) tensorized to ((4, 8, 16), (8, 16, 16)),factorization=BlockTT, rank=[1, 31, 74, 1], implementation=factorized, with a single layer parametrized, 
+        (drop_path): DropPath()
+      )
+      (1): spectral_ConvBlock(
+        (dwconv): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1))
+        (norm): LayerNorm()
+        (pwconv1): FactorizedLinear(in_features=512, out_features=2048, weight of size (2048, 512) tensorized to ((8, 16, 16), (4, 8, 16)),factorization=BlockTT, rank=[1, 31, 74, 1], implementation=factorized, with a single layer parametrized, 
+        (act): GELU(approximate='none')
+        (grn): GRN()
+        (pwconv2): FactorizedLinear(in_features=2048, out_features=512, weight of size (512, 2048) tensorized to ((4, 8, 16), (8, 16, 16)),factorization=BlockTT, rank=[1, 31, 74, 1], implementation=factorized, with a single layer parametrized, 
+        (drop_path): DropPath()
+      )
+    )
+  )
+  (ln): LayerNorm()
+  (fc): Linear(in_features=512, out_features=4, bias=True)
+  (activate): GELU(approximate='none')
+)
+Trainable parameters: 3531268
+2026-04-20 23:30:38,482 - trainer - INFO -     epoch          : 1
+2026-04-20 23:30:38,483 - trainer - INFO -     loss           : 0.7123955853283406
+2026-04-20 23:30:38,484 - trainer - INFO -     OA             : 0.7523437738418579
+2026-04-20 23:30:38,485 - trainer - INFO -     AA             : 0.7640066742897034
+2026-04-20 23:30:38,485 - trainer - INFO -     val_loss       : 0.76070696413517
+2026-04-20 23:30:38,485 - trainer - INFO -     val_OA         : 0.8209821581840515
+2026-04-20 23:30:38,486 - trainer - INFO -     val_AA         : 0.8091667294502258
+2026-04-20 23:30:38,698 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2_TT_KD\0420_232636\checkpoint-epoch1.pth ...
+2026-04-20 23:30:38,861 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-20 23:32:02,819 - trainer - INFO -     epoch          : 2
+2026-04-20 23:32:02,820 - trainer - INFO -     loss           : 0.5641947112977505
+2026-04-20 23:32:02,821 - trainer - INFO -     OA             : 0.85546875
+2026-04-20 23:32:02,821 - trainer - INFO -     AA             : 0.8617534041404724
+2026-04-20 23:32:02,821 - trainer - INFO -     val_loss       : 0.5764343649148941
+2026-04-20 23:32:02,822 - trainer - INFO -     val_OA         : 0.9178571701049805
+2026-04-20 23:32:02,822 - trainer - INFO -     val_AA         : 0.9308530688285828
+2026-04-20 23:32:02,994 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2_TT_KD\0420_232636\checkpoint-epoch2.pth ...
+2026-04-20 23:32:03,169 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-20 23:33:13,348 - trainer - INFO -     epoch          : 3
+2026-04-20 23:33:13,349 - trainer - INFO -     loss           : 0.39116392098367214
+2026-04-20 23:33:13,349 - trainer - INFO -     OA             : 0.895312488079071
+2026-04-20 23:33:13,350 - trainer - INFO -     AA             : 0.8893998265266418
+2026-04-20 23:33:13,350 - trainer - INFO -     val_loss       : 0.5017382696270942
+2026-04-20 23:33:13,351 - trainer - INFO -     val_OA         : 0.940625011920929
+2026-04-20 23:33:13,352 - trainer - INFO -     val_AA         : 0.9378868937492371
+2026-04-20 23:33:13,519 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2_TT_KD\0420_232636\checkpoint-epoch3.pth ...
+2026-04-20 23:33:13,682 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-20 23:34:39,749 - trainer - INFO -     epoch          : 4
+2026-04-20 23:34:39,749 - trainer - INFO -     loss           : 0.31212513595819474
+2026-04-20 23:34:39,750 - trainer - INFO -     OA             : 0.921875
+2026-04-20 23:34:39,750 - trainer - INFO -     AA             : 0.9233086705207825
+2026-04-20 23:34:39,751 - trainer - INFO -     val_loss       : 0.4800141200423241
+2026-04-20 23:34:39,751 - trainer - INFO -     val_OA         : 0.9397321939468384
+2026-04-20 23:34:39,752 - trainer - INFO -     val_AA         : 0.9350892901420593
+2026-04-20 23:34:39,925 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2_TT_KD\0420_232636\checkpoint-epoch4.pth ...
+2026-04-20 23:34:40,088 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-20 23:35:51,130 - trainer - INFO -     epoch          : 5
+2026-04-20 23:35:51,131 - trainer - INFO -     loss           : 0.31094732154160737
+2026-04-20 23:35:51,132 - trainer - INFO -     OA             : 0.9156250357627869
+2026-04-20 23:35:51,132 - trainer - INFO -     AA             : 0.9153618812561035
+2026-04-20 23:35:51,133 - trainer - INFO -     val_loss       : 0.4497188150882721
+2026-04-20 23:35:51,133 - trainer - INFO -     val_OA         : 0.9625000357627869
+2026-04-20 23:35:51,134 - trainer - INFO -     val_AA         : 0.9618750810623169
+2026-04-20 23:35:51,301 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2_TT_KD\0420_232636\checkpoint-epoch5.pth ...
+2026-04-20 23:35:51,465 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-20 23:36:52,659 - trainer - INFO -     epoch          : 6
+2026-04-20 23:36:52,660 - trainer - INFO -     loss           : 0.26522120609879496
+2026-04-20 23:36:52,660 - trainer - INFO -     OA             : 0.9234375357627869
+2026-04-20 23:36:52,661 - trainer - INFO -     AA             : 0.912416934967041
+2026-04-20 23:36:52,661 - trainer - INFO -     val_loss       : 0.4524542436003685
+2026-04-20 23:36:52,662 - trainer - INFO -     val_OA         : 0.9750000238418579
+2026-04-20 23:36:52,663 - trainer - INFO -     val_AA         : 0.981235146522522
+2026-04-20 23:36:52,834 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2_TT_KD\0420_232636\checkpoint-epoch6.pth ...
+2026-04-20 23:38:12,109 - trainer - INFO -     epoch          : 7
+2026-04-20 23:38:12,109 - trainer - INFO -     loss           : 0.2720218891277909
+2026-04-20 23:38:12,110 - trainer - INFO -     OA             : 0.9296875
+2026-04-20 23:38:12,111 - trainer - INFO -     AA             : 0.9287946820259094
+2026-04-20 23:38:12,111 - trainer - INFO -     val_loss       : 0.5469635382294655
+2026-04-20 23:38:12,112 - trainer - INFO -     val_OA         : 0.9026786088943481
+2026-04-20 23:38:12,112 - trainer - INFO -     val_AA         : 0.9092063903808594
+2026-04-20 23:38:12,280 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2_TT_KD\0420_232636\checkpoint-epoch7.pth ...
+2026-04-20 23:39:27,420 - trainer - INFO -     epoch          : 8
+2026-04-20 23:39:27,420 - trainer - INFO -     loss           : 0.2772641185671091
+2026-04-20 23:39:27,421 - trainer - INFO -     OA             : 0.921093761920929
+2026-04-20 23:39:27,422 - trainer - INFO -     AA             : 0.9102134704589844
+2026-04-20 23:39:27,422 - trainer - INFO -     val_loss       : 0.463963520526886
+2026-04-20 23:39:27,423 - trainer - INFO -     val_OA         : 0.9468750357627869
+2026-04-20 23:39:27,423 - trainer - INFO -     val_AA         : 0.9511160850524902
+2026-04-20 23:39:27,591 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2_TT_KD\0420_232636\checkpoint-epoch8.pth ...
+2026-04-20 23:40:42,782 - trainer - INFO -     epoch          : 9
+2026-04-20 23:40:42,782 - trainer - INFO -     loss           : 0.24642375521361828
+2026-04-20 23:40:42,783 - trainer - INFO -     OA             : 0.9296875
+2026-04-20 23:40:42,784 - trainer - INFO -     AA             : 0.9209374785423279
+2026-04-20 23:40:42,784 - trainer - INFO -     val_loss       : 0.477179628610611
+2026-04-20 23:40:42,785 - trainer - INFO -     val_OA         : 0.9401785731315613
+2026-04-20 23:40:42,785 - trainer - INFO -     val_AA         : 0.9465875029563904
+2026-04-20 23:40:43,376 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2_TT_KD\0420_232636\checkpoint-epoch9.pth ...
+2026-04-20 23:42:05,195 - trainer - INFO -     epoch          : 10
+2026-04-20 23:42:05,196 - trainer - INFO -     loss           : 0.22357498463243247
+2026-04-20 23:42:05,196 - trainer - INFO -     OA             : 0.9476562738418579
+2026-04-20 23:42:05,197 - trainer - INFO -     AA             : 0.9503845572471619
+2026-04-20 23:42:05,197 - trainer - INFO -     val_loss       : 0.4721931666135788
+2026-04-20 23:42:05,198 - trainer - INFO -     val_OA         : 0.9468750357627869
+2026-04-20 23:42:05,199 - trainer - INFO -     val_AA         : 0.9386160969734192
+2026-04-20 23:42:05,373 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2_TT_KD\0420_232636\checkpoint-epoch10.pth ...
+2026-04-20 23:43:21,893 - trainer - INFO -     epoch          : 11
+2026-04-20 23:43:21,894 - trainer - INFO -     loss           : 0.2405534230172634
+2026-04-20 23:43:21,895 - trainer - INFO -     OA             : 0.94140625
+2026-04-20 23:43:21,895 - trainer - INFO -     AA             : 0.9423635601997375
+2026-04-20 23:43:21,896 - trainer - INFO -     val_loss       : 0.44827664494514463
+2026-04-20 23:43:21,897 - trainer - INFO -     val_OA         : 0.9589285850524902
+2026-04-20 23:43:21,897 - trainer - INFO -     val_AA         : 0.9715922474861145
+2026-04-20 23:43:22,068 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2_TT_KD\0420_232636\checkpoint-epoch11.pth ...
+2026-04-20 23:43:22,230 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-20 23:44:55,601 - trainer - INFO -     epoch          : 12
+2026-04-20 23:44:55,601 - trainer - INFO -     loss           : 0.21129073845222593
+2026-04-20 23:44:55,602 - trainer - INFO -     OA             : 0.9468750357627869
+2026-04-20 23:44:55,603 - trainer - INFO -     AA             : 0.9506623148918152
+2026-04-20 23:44:55,603 - trainer - INFO -     val_loss       : 0.4253720462322235
+2026-04-20 23:44:55,604 - trainer - INFO -     val_OA         : 0.9705357551574707
+2026-04-20 23:44:55,604 - trainer - INFO -     val_AA         : 0.9682836532592773
+2026-04-20 23:44:55,773 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2_TT_KD\0420_232636\checkpoint-epoch12.pth ...
+2026-04-20 23:44:55,938 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-20 23:46:27,154 - trainer - INFO -     epoch          : 13
+2026-04-20 23:46:27,155 - trainer - INFO -     loss           : 0.20635886788368224
+2026-04-20 23:46:27,156 - trainer - INFO -     OA             : 0.9468750357627869
+2026-04-20 23:46:27,156 - trainer - INFO -     AA             : 0.9453210830688477
+2026-04-20 23:46:27,157 - trainer - INFO -     val_loss       : 0.42961508184671404
+2026-04-20 23:46:27,157 - trainer - INFO -     val_OA         : 0.9651786088943481
+2026-04-20 23:46:27,158 - trainer - INFO -     val_AA         : 0.9725893139839172
+2026-04-20 23:46:27,334 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2_TT_KD\0420_232636\checkpoint-epoch13.pth ...
+2026-04-20 23:47:45,906 - trainer - INFO -     epoch          : 14
+2026-04-20 23:47:45,907 - trainer - INFO -     loss           : 0.19432468265295028
+2026-04-20 23:47:45,908 - trainer - INFO -     OA             : 0.9515625238418579
+2026-04-20 23:47:45,908 - trainer - INFO -     AA             : 0.9500781297683716
+2026-04-20 23:47:45,909 - trainer - INFO -     val_loss       : 0.4252528503537178
+2026-04-20 23:47:45,909 - trainer - INFO -     val_OA         : 0.9750000238418579
+2026-04-20 23:47:45,910 - trainer - INFO -     val_AA         : 0.9759722948074341
+2026-04-20 23:47:46,082 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2_TT_KD\0420_232636\checkpoint-epoch14.pth ...
+2026-04-20 23:47:46,244 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-20 23:48:53,360 - trainer - INFO -     epoch          : 15
+2026-04-20 23:48:53,361 - trainer - INFO -     loss           : 0.19114263877272605
+2026-04-20 23:48:53,361 - trainer - INFO -     OA             : 0.957812488079071
+2026-04-20 23:48:53,362 - trainer - INFO -     AA             : 0.9605356454849243
+2026-04-20 23:48:53,362 - trainer - INFO -     val_loss       : 0.4329363822937012
+2026-04-20 23:48:53,363 - trainer - INFO -     val_OA         : 0.971875011920929
+2026-04-20 23:48:53,363 - trainer - INFO -     val_AA         : 0.9650694131851196
+2026-04-20 23:48:53,534 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2_TT_KD\0420_232636\checkpoint-epoch15.pth ...
+2026-04-20 23:50:25,189 - trainer - INFO -     epoch          : 16
+2026-04-20 23:50:25,190 - trainer - INFO -     loss           : 0.18377121780067682
+2026-04-20 23:50:25,190 - trainer - INFO -     OA             : 0.9546875357627869
+2026-04-20 23:50:25,191 - trainer - INFO -     AA             : 0.9532924890518188
+2026-04-20 23:50:25,191 - trainer - INFO -     val_loss       : 0.41920002549886703
+2026-04-20 23:50:25,192 - trainer - INFO -     val_OA         : 0.9750000238418579
+2026-04-20 23:50:25,193 - trainer - INFO -     val_AA         : 0.979270875453949
+2026-04-20 23:50:25,362 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2_TT_KD\0420_232636\checkpoint-epoch16.pth ...
+2026-04-20 23:50:25,526 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-20 23:52:26,692 - trainer - INFO -     epoch          : 17
+2026-04-20 23:52:26,692 - trainer - INFO -     loss           : 0.18637657463550567
+2026-04-20 23:52:26,693 - trainer - INFO -     OA             : 0.95703125
+2026-04-20 23:52:26,693 - trainer - INFO -     AA             : 0.9566554427146912
+2026-04-20 23:52:26,694 - trainer - INFO -     val_loss       : 0.41648907363414767
+2026-04-20 23:52:26,694 - trainer - INFO -     val_OA         : 0.9781250357627869
+2026-04-20 23:52:26,695 - trainer - INFO -     val_AA         : 0.9830951690673828
+2026-04-20 23:52:26,865 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2_TT_KD\0420_232636\checkpoint-epoch17.pth ...
+2026-04-20 23:52:27,047 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-20 23:53:28,643 - trainer - INFO -     epoch          : 18
+2026-04-20 23:53:28,644 - trainer - INFO -     loss           : 0.17069401433691384
+2026-04-20 23:53:28,644 - trainer - INFO -     OA             : 0.965624988079071
+2026-04-20 23:53:28,645 - trainer - INFO -     AA             : 0.9654118418693542
+2026-04-20 23:53:28,646 - trainer - INFO -     val_loss       : 0.4261167079210281
+2026-04-20 23:53:28,646 - trainer - INFO -     val_OA         : 0.9714285731315613
+2026-04-20 23:53:28,647 - trainer - INFO -     val_AA         : 0.9733333587646484
+2026-04-20 23:53:28,818 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2_TT_KD\0420_232636\checkpoint-epoch18.pth ...
+2026-04-20 23:54:29,965 - trainer - INFO -     epoch          : 19
+2026-04-20 23:54:29,966 - trainer - INFO -     loss           : 0.17545779868960382
+2026-04-20 23:54:29,967 - trainer - INFO -     OA             : 0.961718738079071
+2026-04-20 23:54:29,967 - trainer - INFO -     AA             : 0.9644568562507629
+2026-04-20 23:54:29,968 - trainer - INFO -     val_loss       : 0.41339551359415055
+2026-04-20 23:54:29,968 - trainer - INFO -     val_OA         : 0.9750000238418579
+2026-04-20 23:54:29,969 - trainer - INFO -     val_AA         : 0.9797916412353516
+2026-04-20 23:54:30,138 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2_TT_KD\0420_232636\checkpoint-epoch19.pth ...
+2026-04-20 23:54:30,309 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-20 23:55:32,914 - trainer - INFO -     epoch          : 20
+2026-04-20 23:55:32,914 - trainer - INFO -     loss           : 0.17144836336374283
+2026-04-20 23:55:32,915 - trainer - INFO -     OA             : 0.973437488079071
+2026-04-20 23:55:32,915 - trainer - INFO -     AA             : 0.9721986651420593
+2026-04-20 23:55:32,916 - trainer - INFO -     val_loss       : 0.41709526628255844
+2026-04-20 23:55:32,917 - trainer - INFO -     val_OA         : 0.9745535850524902
+2026-04-20 23:55:32,917 - trainer - INFO -     val_AA         : 0.9760417342185974
+2026-04-20 23:55:33,087 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2_TT_KD\0420_232636\checkpoint-epoch20.pth ...

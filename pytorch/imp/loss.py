@@ -5,3 +5,6 @@ def nll_loss(output, target):
 
 def cross_entropy_loss(output, target, weight=None):
     return F.cross_entropy(output, target, weight=weight)
+
+def smooth_cross_entropy_loss(output, target):
+    return F.cross_entropy(output, target, label_smoothing=0.1)

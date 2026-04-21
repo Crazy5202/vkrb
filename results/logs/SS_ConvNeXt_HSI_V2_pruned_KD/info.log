@@ -1,0 +1,292 @@
+2026-04-21 21:02:38,692 - train - INFO - SS_ConvNeXt_V2(
+  (downsample_layers): ModuleList(
+    (0): Sequential(
+      (0): Conv2d(204, 64, kernel_size=(1, 1), stride=(1, 1))
+      (1): LayerNorm()
+      (2): GELU(approximate='none')
+    )
+    (1): Sequential(
+      (0): LayerNorm()
+      (1): Conv2d(64, 128, kernel_size=(2, 2), stride=(2, 2))
+    )
+    (2): Sequential(
+      (0): LayerNorm()
+      (1): Conv2d(128, 256, kernel_size=(2, 2), stride=(2, 2))
+    )
+    (3): Sequential(
+      (0): LayerNorm()
+      (1): Conv2d(256, 512, kernel_size=(2, 2), stride=(2, 2))
+    )
+  )
+  (main_layers): ModuleList(
+    (0): Sequential(
+      (0): spatial_ConvBlock(
+        (dwconv): Conv2d(64, 64, kernel_size=(3, 11), stride=(1, 1), padding=same, groups=64)
+        (norm): LayerNorm()
+        (pwconv1): Linear(in_features=64, out_features=256, bias=True)
+        (act): GELU(approximate='none')
+        (grn): GRN()
+        (pwconv2): Linear(in_features=256, out_features=64, bias=True)
+        (drop_path): Identity()
+      )
+      (1): spectral_ConvBlock(
+        (dwconv): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+        (norm): LayerNorm()
+        (pwconv1): Linear(in_features=64, out_features=256, bias=True)
+        (act): GELU(approximate='none')
+        (grn): GRN()
+        (pwconv2): Linear(in_features=256, out_features=64, bias=True)
+        (drop_path): DropPath()
+      )
+    )
+    (1): Sequential(
+      (0): spatial_ConvBlock(
+        (dwconv): Conv2d(128, 128, kernel_size=(3, 11), stride=(1, 1), padding=same, groups=128)
+        (norm): LayerNorm()
+        (pwconv1): Linear(in_features=128, out_features=384, bias=True)
+        (act): GELU(approximate='none')
+        (grn): GRN()
+        (pwconv2): Linear(in_features=384, out_features=128, bias=True)
+        (drop_path): DropPath()
+      )
+      (1): spectral_ConvBlock(
+        (dwconv): Conv2d(128, 128, kernel_size=(1, 1), stride=(1, 1))
+        (norm): LayerNorm()
+        (pwconv1): Linear(in_features=128, out_features=384, bias=True)
+        (act): GELU(approximate='none')
+        (grn): GRN()
+        (pwconv2): Linear(in_features=384, out_features=128, bias=True)
+        (drop_path): DropPath()
+      )
+    )
+    (2): Sequential(
+      (0): spatial_ConvBlock(
+        (dwconv): Conv2d(256, 256, kernel_size=(3, 11), stride=(1, 1), padding=same, groups=256)
+        (norm): LayerNorm()
+        (pwconv1): Linear(in_features=256, out_features=512, bias=True)
+        (act): GELU(approximate='none')
+        (grn): GRN()
+        (pwconv2): Linear(in_features=512, out_features=256, bias=True)
+        (drop_path): DropPath()
+      )
+      (1): spatial_ConvBlock(
+        (dwconv): Conv2d(256, 256, kernel_size=(3, 11), stride=(1, 1), padding=same, groups=256)
+        (norm): LayerNorm()
+        (pwconv1): Linear(in_features=256, out_features=512, bias=True)
+        (act): GELU(approximate='none')
+        (grn): GRN()
+        (pwconv2): Linear(in_features=512, out_features=256, bias=True)
+        (drop_path): DropPath()
+      )
+      (2): spectral_ConvBlock(
+        (dwconv): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (norm): LayerNorm()
+        (pwconv1): Linear(in_features=256, out_features=512, bias=True)
+        (act): GELU(approximate='none')
+        (grn): GRN()
+        (pwconv2): Linear(in_features=512, out_features=256, bias=True)
+        (drop_path): DropPath()
+      )
+      (3): spectral_ConvBlock(
+        (dwconv): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (norm): LayerNorm()
+        (pwconv1): Linear(in_features=256, out_features=512, bias=True)
+        (act): GELU(approximate='none')
+        (grn): GRN()
+        (pwconv2): Linear(in_features=512, out_features=256, bias=True)
+        (drop_path): DropPath()
+      )
+    )
+    (3): Sequential(
+      (0): spatial_ConvBlock(
+        (dwconv): Conv2d(512, 512, kernel_size=(3, 11), stride=(1, 1), padding=same, groups=512)
+        (norm): LayerNorm()
+        (pwconv1): Linear(in_features=512, out_features=614, bias=True)
+        (act): GELU(approximate='none')
+        (grn): GRN()
+        (pwconv2): Linear(in_features=614, out_features=512, bias=True)
+        (drop_path): DropPath()
+      )
+      (1): spectral_ConvBlock(
+        (dwconv): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1))
+        (norm): LayerNorm()
+        (pwconv1): Linear(in_features=512, out_features=614, bias=True)
+        (act): GELU(approximate='none')
+        (grn): GRN()
+        (pwconv2): Linear(in_features=614, out_features=512, bias=True)
+        (drop_path): DropPath()
+      )
+    )
+  )
+  (ln): LayerNorm()
+  (fc): Linear(in_features=512, out_features=4, bias=True)
+  (activate): GELU(approximate='none')
+)
+Trainable parameters: 3751656
+2026-04-21 21:05:49,392 - trainer - INFO -     epoch          : 1
+2026-04-21 21:05:49,393 - trainer - INFO -     loss           : 0.3461372138932347
+2026-04-21 21:05:49,393 - trainer - INFO -     OA             : 0.88671875
+2026-04-21 21:05:49,394 - trainer - INFO -     AA             : 0.8832441568374634
+2026-04-21 21:05:49,394 - trainer - INFO -     val_loss       : 0.49879658967256546
+2026-04-21 21:05:49,395 - trainer - INFO -     val_OA         : 0.9281250238418579
+2026-04-21 21:05:49,395 - trainer - INFO -     val_AA         : 0.9229167103767395
+2026-04-21 21:05:49,532 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2_pruned_KD\0421_210238\checkpoint-epoch1.pth ...
+2026-04-21 21:05:49,664 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-21 21:06:53,224 - trainer - INFO -     epoch          : 2
+2026-04-21 21:06:53,224 - trainer - INFO -     loss           : 0.240506499633193
+2026-04-21 21:06:53,225 - trainer - INFO -     OA             : 0.94140625
+2026-04-21 21:06:53,226 - trainer - INFO -     AA             : 0.9306493997573853
+2026-04-21 21:06:53,226 - trainer - INFO -     val_loss       : 0.4402072995901108
+2026-04-21 21:06:53,227 - trainer - INFO -     val_OA         : 0.9683036208152771
+2026-04-21 21:06:53,227 - trainer - INFO -     val_AA         : 0.9622916579246521
+2026-04-21 21:06:53,360 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2_pruned_KD\0421_210238\checkpoint-epoch2.pth ...
+2026-04-21 21:06:53,488 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-21 21:07:58,070 - trainer - INFO -     epoch          : 3
+2026-04-21 21:07:58,071 - trainer - INFO -     loss           : 0.2084156421944499
+2026-04-21 21:07:58,072 - trainer - INFO -     OA             : 0.9515625238418579
+2026-04-21 21:07:58,072 - trainer - INFO -     AA             : 0.9473052024841309
+2026-04-21 21:07:58,073 - trainer - INFO -     val_loss       : 0.41182904988527297
+2026-04-21 21:07:58,073 - trainer - INFO -     val_OA         : 0.9906250238418579
+2026-04-21 21:07:58,074 - trainer - INFO -     val_AA         : 0.9891666769981384
+2026-04-21 21:07:58,207 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2_pruned_KD\0421_210238\checkpoint-epoch3.pth ...
+2026-04-21 21:07:58,339 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-21 21:09:39,306 - trainer - INFO -     epoch          : 4
+2026-04-21 21:09:39,306 - trainer - INFO -     loss           : 0.19226080253720285
+2026-04-21 21:09:39,307 - trainer - INFO -     OA             : 0.957812488079071
+2026-04-21 21:09:39,308 - trainer - INFO -     AA             : 0.9588456153869629
+2026-04-21 21:09:39,308 - trainer - INFO -     val_loss       : 0.4523581326007843
+2026-04-21 21:09:39,309 - trainer - INFO -     val_OA         : 0.953125
+2026-04-21 21:09:39,309 - trainer - INFO -     val_AA         : 0.9352083206176758
+2026-04-21 21:09:39,444 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2_pruned_KD\0421_210238\checkpoint-epoch4.pth ...
+2026-04-21 21:10:56,799 - trainer - INFO -     epoch          : 5
+2026-04-21 21:10:56,800 - trainer - INFO -     loss           : 0.19797862712293862
+2026-04-21 21:10:56,800 - trainer - INFO -     OA             : 0.960156261920929
+2026-04-21 21:10:56,801 - trainer - INFO -     AA             : 0.958328366279602
+2026-04-21 21:10:56,802 - trainer - INFO -     val_loss       : 0.4203102752566338
+2026-04-21 21:10:56,802 - trainer - INFO -     val_OA         : 0.9808036088943481
+2026-04-21 21:10:56,803 - trainer - INFO -     val_AA         : 0.9821726083755493
+2026-04-21 21:10:56,936 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2_pruned_KD\0421_210238\checkpoint-epoch5.pth ...
+2026-04-21 21:12:21,761 - trainer - INFO -     epoch          : 6
+2026-04-21 21:12:21,762 - trainer - INFO -     loss           : 0.1953740928322077
+2026-04-21 21:12:21,763 - trainer - INFO -     OA             : 0.961718738079071
+2026-04-21 21:12:21,764 - trainer - INFO -     AA             : 0.9571294188499451
+2026-04-21 21:12:21,764 - trainer - INFO -     val_loss       : 0.4379773661494255
+2026-04-21 21:12:21,765 - trainer - INFO -     val_OA         : 0.965624988079071
+2026-04-21 21:12:21,765 - trainer - INFO -     val_AA         : 0.9679166674613953
+2026-04-21 21:12:21,897 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2_pruned_KD\0421_210238\checkpoint-epoch6.pth ...
+2026-04-21 21:13:42,986 - trainer - INFO -     epoch          : 7
+2026-04-21 21:13:42,987 - trainer - INFO -     loss           : 0.2049340346828103
+2026-04-21 21:13:42,987 - trainer - INFO -     OA             : 0.953906238079071
+2026-04-21 21:13:42,988 - trainer - INFO -     AA             : 0.9557186961174011
+2026-04-21 21:13:42,989 - trainer - INFO -     val_loss       : 0.4169614642858505
+2026-04-21 21:13:42,989 - trainer - INFO -     val_OA         : 0.9808036088943481
+2026-04-21 21:13:42,990 - trainer - INFO -     val_AA         : 0.9862203001976013
+2026-04-21 21:13:43,130 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2_pruned_KD\0421_210238\checkpoint-epoch7.pth ...
+2026-04-21 21:15:02,955 - trainer - INFO -     epoch          : 8
+2026-04-21 21:15:02,956 - trainer - INFO -     loss           : 0.18523564226925374
+2026-04-21 21:15:02,957 - trainer - INFO -     OA             : 0.95703125
+2026-04-21 21:15:02,957 - trainer - INFO -     AA             : 0.9510378837585449
+2026-04-21 21:15:02,958 - trainer - INFO -     val_loss       : 0.4120486006140709
+2026-04-21 21:15:02,959 - trainer - INFO -     val_OA         : 0.9839286208152771
+2026-04-21 21:15:02,959 - trainer - INFO -     val_AA         : 0.9846726655960083
+2026-04-21 21:15:03,090 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2_pruned_KD\0421_210238\checkpoint-epoch8.pth ...
+2026-04-21 21:16:15,612 - trainer - INFO -     epoch          : 9
+2026-04-21 21:16:15,613 - trainer - INFO -     loss           : 0.2004047056660056
+2026-04-21 21:16:15,614 - trainer - INFO -     OA             : 0.956250011920929
+2026-04-21 21:16:15,614 - trainer - INFO -     AA             : 0.9579859972000122
+2026-04-21 21:16:15,615 - trainer - INFO -     val_loss       : 0.48138573318719863
+2026-04-21 21:16:15,615 - trainer - INFO -     val_OA         : 0.934374988079071
+2026-04-21 21:16:15,616 - trainer - INFO -     val_AA         : 0.9373809695243835
+2026-04-21 21:16:15,745 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2_pruned_KD\0421_210238\checkpoint-epoch9.pth ...
+2026-04-21 21:17:25,479 - trainer - INFO -     epoch          : 10
+2026-04-21 21:17:25,480 - trainer - INFO -     loss           : 0.20235880929976702
+2026-04-21 21:17:25,480 - trainer - INFO -     OA             : 0.957812488079071
+2026-04-21 21:17:25,481 - trainer - INFO -     AA             : 0.9598909616470337
+2026-04-21 21:17:25,482 - trainer - INFO -     val_loss       : 0.4343113943934441
+2026-04-21 21:17:25,482 - trainer - INFO -     val_OA         : 0.956250011920929
+2026-04-21 21:17:25,483 - trainer - INFO -     val_AA         : 0.9636309742927551
+2026-04-21 21:17:25,618 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2_pruned_KD\0421_210238\checkpoint-epoch10.pth ...
+2026-04-21 21:18:48,366 - trainer - INFO -     epoch          : 11
+2026-04-21 21:18:48,367 - trainer - INFO -     loss           : 0.18897199016064406
+2026-04-21 21:18:48,368 - trainer - INFO -     OA             : 0.957812488079071
+2026-04-21 21:18:48,368 - trainer - INFO -     AA             : 0.9588145613670349
+2026-04-21 21:18:48,369 - trainer - INFO -     val_loss       : 0.41027127355337145
+2026-04-21 21:18:48,369 - trainer - INFO -     val_OA         : 0.9808036088943481
+2026-04-21 21:18:48,370 - trainer - INFO -     val_AA         : 0.981249988079071
+2026-04-21 21:18:48,505 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2_pruned_KD\0421_210238\checkpoint-epoch11.pth ...
+2026-04-21 21:18:48,634 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-21 21:20:23,660 - trainer - INFO -     epoch          : 12
+2026-04-21 21:20:23,661 - trainer - INFO -     loss           : 0.19305496402084826
+2026-04-21 21:20:23,662 - trainer - INFO -     OA             : 0.960156261920929
+2026-04-21 21:20:23,662 - trainer - INFO -     AA             : 0.9526970982551575
+2026-04-21 21:20:23,663 - trainer - INFO -     val_loss       : 0.41870767772197726
+2026-04-21 21:20:23,664 - trainer - INFO -     val_OA         : 0.9714285731315613
+2026-04-21 21:20:23,664 - trainer - INFO -     val_AA         : 0.9659076929092407
+2026-04-21 21:20:23,810 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2_pruned_KD\0421_210238\checkpoint-epoch12.pth ...
+2026-04-21 21:21:44,517 - trainer - INFO -     epoch          : 13
+2026-04-21 21:21:44,517 - trainer - INFO -     loss           : 0.19037414398044347
+2026-04-21 21:21:44,518 - trainer - INFO -     OA             : 0.9609375
+2026-04-21 21:21:44,519 - trainer - INFO -     AA             : 0.9612873196601868
+2026-04-21 21:21:44,520 - trainer - INFO -     val_loss       : 0.4201308384537697
+2026-04-21 21:21:44,520 - trainer - INFO -     val_OA         : 0.96875
+2026-04-21 21:21:44,521 - trainer - INFO -     val_AA         : 0.9600000381469727
+2026-04-21 21:21:44,656 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2_pruned_KD\0421_210238\checkpoint-epoch13.pth ...
+2026-04-21 21:23:08,588 - trainer - INFO -     epoch          : 14
+2026-04-21 21:23:08,589 - trainer - INFO -     loss           : 0.1706001170910895
+2026-04-21 21:23:08,589 - trainer - INFO -     OA             : 0.967968761920929
+2026-04-21 21:23:08,590 - trainer - INFO -     AA             : 0.9666778445243835
+2026-04-21 21:23:08,591 - trainer - INFO -     val_loss       : 0.40214426517486573
+2026-04-21 21:23:08,591 - trainer - INFO -     val_OA         : 0.987500011920929
+2026-04-21 21:23:08,592 - trainer - INFO -     val_AA         : 0.9897916913032532
+2026-04-21 21:23:08,726 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2_pruned_KD\0421_210238\checkpoint-epoch14.pth ...
+2026-04-21 21:23:08,856 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-21 21:24:43,974 - trainer - INFO -     epoch          : 15
+2026-04-21 21:24:43,974 - trainer - INFO -     loss           : 0.16633067112416028
+2026-04-21 21:24:43,975 - trainer - INFO -     OA             : 0.97265625
+2026-04-21 21:24:43,976 - trainer - INFO -     AA             : 0.9748549461364746
+2026-04-21 21:24:43,976 - trainer - INFO -     val_loss       : 0.4130356922745705
+2026-04-21 21:24:43,977 - trainer - INFO -     val_OA         : 0.9776785969734192
+2026-04-21 21:24:43,978 - trainer - INFO -     val_AA         : 0.9675893187522888
+2026-04-21 21:24:44,107 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2_pruned_KD\0421_210238\checkpoint-epoch15.pth ...
+2026-04-21 21:25:59,132 - trainer - INFO -     epoch          : 16
+2026-04-21 21:25:59,133 - trainer - INFO -     loss           : 0.1629911983385682
+2026-04-21 21:25:59,133 - trainer - INFO -     OA             : 0.9671875238418579
+2026-04-21 21:25:59,134 - trainer - INFO -     AA             : 0.9702046513557434
+2026-04-21 21:25:59,135 - trainer - INFO -     val_loss       : 0.4101397439837456
+2026-04-21 21:25:59,135 - trainer - INFO -     val_OA         : 0.981249988079071
+2026-04-21 21:25:59,136 - trainer - INFO -     val_AA         : 0.9846526980400085
+2026-04-21 21:25:59,268 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2_pruned_KD\0421_210238\checkpoint-epoch16.pth ...
+2026-04-21 21:27:23,994 - trainer - INFO -     epoch          : 17
+2026-04-21 21:27:23,995 - trainer - INFO -     loss           : 0.16165517466142773
+2026-04-21 21:27:23,996 - trainer - INFO -     OA             : 0.9750000238418579
+2026-04-21 21:27:23,997 - trainer - INFO -     AA             : 0.9750111699104309
+2026-04-21 21:27:23,998 - trainer - INFO -     val_loss       : 0.4057091102004051
+2026-04-21 21:27:23,998 - trainer - INFO -     val_OA         : 0.981249988079071
+2026-04-21 21:27:23,999 - trainer - INFO -     val_AA         : 0.9827976226806641
+2026-04-21 21:27:24,132 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2_pruned_KD\0421_210238\checkpoint-epoch17.pth ...
+2026-04-21 21:28:42,552 - trainer - INFO -     epoch          : 18
+2026-04-21 21:28:42,553 - trainer - INFO -     loss           : 0.15831431671977042
+2026-04-21 21:28:42,554 - trainer - INFO -     OA             : 0.973437488079071
+2026-04-21 21:28:42,554 - trainer - INFO -     AA             : 0.972797691822052
+2026-04-21 21:28:42,555 - trainer - INFO -     val_loss       : 0.40385282039642334
+2026-04-21 21:28:42,556 - trainer - INFO -     val_OA         : 0.984375
+2026-04-21 21:28:42,557 - trainer - INFO -     val_AA         : 0.9834375381469727
+2026-04-21 21:28:42,701 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2_pruned_KD\0421_210238\checkpoint-epoch18.pth ...
+2026-04-21 21:30:03,817 - trainer - INFO -     epoch          : 19
+2026-04-21 21:30:03,818 - trainer - INFO -     loss           : 0.16209637047722936
+2026-04-21 21:30:03,818 - trainer - INFO -     OA             : 0.971875011920929
+2026-04-21 21:30:03,819 - trainer - INFO -     AA             : 0.9652828574180603
+2026-04-21 21:30:03,819 - trainer - INFO -     val_loss       : 0.4013681963086128
+2026-04-21 21:30:03,820 - trainer - INFO -     val_OA         : 0.984375
+2026-04-21 21:30:03,821 - trainer - INFO -     val_AA         : 0.9870832562446594
+2026-04-21 21:30:03,955 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2_pruned_KD\0421_210238\checkpoint-epoch19.pth ...
+2026-04-21 21:30:04,083 - trainer - INFO - Saving current best: model_best.pth ...
+2026-04-21 21:31:41,577 - trainer - INFO -     epoch          : 20
+2026-04-21 21:31:41,578 - trainer - INFO -     loss           : 0.16322471210733056
+2026-04-21 21:31:41,578 - trainer - INFO -     OA             : 0.9671875238418579
+2026-04-21 21:31:41,579 - trainer - INFO -     AA             : 0.9668303728103638
+2026-04-21 21:31:41,580 - trainer - INFO -     val_loss       : 0.40014866292476653
+2026-04-21 21:31:41,580 - trainer - INFO -     val_OA         : 0.984375
+2026-04-21 21:31:41,581 - trainer - INFO -     val_AA         : 0.9854167103767395
+2026-04-21 21:31:41,713 - trainer - INFO - Saving checkpoint: saved\models\SS_ConvNeXt_HSI_V2_pruned_KD\0421_210238\checkpoint-epoch20.pth ...
+2026-04-21 21:31:41,840 - trainer - INFO - Saving current best: model_best.pth ...

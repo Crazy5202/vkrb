@@ -46,7 +46,7 @@ class LayerNorm(nn.Module):
             return x
 
 class SS_ConvNeXt(nn.Module):
-    def __init__(self, num_classes: int = 4, depths: list = [2, 2, 4, 2], dims: list = [32, 64, 128, 256], 
+    def __init__(self, num_classes: int = 4, depths: list = [1, 1, 2, 1], dims: list = [64, 96, 64, 96], 
                 num_channels = 204, drop_path_rate: float = 0.2, 
                 layer_scale_init_value: float = 1e-6, head_init_scale: float = 1.):
 
@@ -105,9 +105,6 @@ class SS_ConvNeXt(nn.Module):
         if isinstance(module, nn.Conv2d):
             nn.init.kaiming_normal_(module.weight.data, mode='fan_out')
             # nn.init.constant_(module.bias, 0)
-        elif isinstance(module, nn.BatchNorm2d):
-            module.weight.data.fill_(1)
-            module.bias.data.zero_()
         elif isinstance(module, nn.Linear):
             nn.init.trunc_normal_(module.weight, std=.02)
             nn.init.constant_(module.bias, 0)
@@ -145,7 +142,7 @@ class spatial_ConvBlock(nn.Module):
 
     def __init__(self, dim, drop_rate=0.5, layer_scale_init_value=1e-6):
         super().__init__()
-        self.dwconv = nn.Conv2d(dim, dim, kernel_size=3, stride=1, padding=1, groups=dim, bias=True)  # depthwise conv
+        self.dwconv = nn.Conv2d(dim, dim, kernel_size=(3,23), stride=1, padding=(1,11), groups=dim, bias=True)  # depthwise conv
         self.norm = LayerNorm(dim, eps=1e-6, data_format="channels_last")
         #self.ln1 = LayerNorm(dim, eps=1e-6, data_format="channels_first")
         self.pwconv1 = nn.Linear(dim, 4 * dim)  # pointwise/1x1 convs, implemented with linear layers

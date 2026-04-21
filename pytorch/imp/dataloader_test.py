@@ -1,8 +1,7 @@
 from pytorch.src.base_dataloader import BaseDataLoader
-from pytorch.imp.data import HyperTiffDataset, transform_func
-#from pytorch.utils.util import hs_to_tensor_clipping_scaling
+from pytorch.imp.data import test_dataset
 
-test_dataset = HyperTiffDataset(annotations_file = "data/data_csv/hyperleaf/solution.csv", 
-                                img_dir = "data/data_numpy/hyperleaf", transform = transform_func)
-test_dataloader = BaseDataLoader(test_dataset, batch_size=64, num_workers = 2, prefetch_factor = 2, 
+test_dataloader = BaseDataLoader(dataset=test_dataset, batch_size=16, num_workers = 2, prefetch_factor = 2, 
                                  persistent_workers=True, pin_memory = True)
+# val_dataloader = BaseDataLoader(dataset=val_dataset, batch_size=32, num_workers = 2, prefetch_factor = 2, 
+#                                  persistent_workers=True, pin_memory = True)

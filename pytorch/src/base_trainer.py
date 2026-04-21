@@ -1,7 +1,8 @@
+from pytorch.utils.visualization import TensorboardWriter
+
 import torch
 from abc import abstractmethod
 from numpy import inf
-from pytorch.utils.visualization import TensorboardWriter
 from typing import List
 
 class BaseTrainer:
